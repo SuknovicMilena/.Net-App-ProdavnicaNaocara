@@ -107,6 +107,8 @@ namespace ProdavnicaNaocara.Data.Migrations
 
                     b.Property<int>("MestoId");
 
+                    b.Property<string>("Naziv");
+
                     b.HasKey("Id");
 
                     b.HasIndex("MestoId");

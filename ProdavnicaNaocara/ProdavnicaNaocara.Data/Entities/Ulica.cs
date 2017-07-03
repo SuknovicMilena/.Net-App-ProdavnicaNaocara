@@ -10,6 +10,8 @@ namespace ProdavnicaNaocara.Data.Entities
     {
         public int Id { get; set; }
 
+        public string Naziv { get; set; }
+
         [Required]
         public int MestoId { get; set; }
 

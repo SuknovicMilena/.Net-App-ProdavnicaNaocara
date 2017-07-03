@@ -9,14 +9,30 @@ using ProdavnicaNaocara.Common.Enums;
 namespace ProdavnicaNaocara.Data.Migrations
 {
     [DbContext(typeof(ProdavnicaNaocaraDbContext))]
-    [Migration("20170702102115_Initial")]
-    partial class Initial
+    [Migration("20170703171720_DodataUlicaAdresa")]
+    partial class DodataUlicaAdresa
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("ProdavnicaNaocara.Data.Entities.Adresa", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("Broj");
+
+                    b.Property<int>("UlicaId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UlicaId");
+
+                    b.ToTable("Adrese");
+                });
 
             modelBuilder.Entity("ProdavnicaNaocara.Data.Entities.Cena", b =>
                 {
@@ -85,7 +101,21 @@ namespace ProdavnicaNaocara.Data.Migrations
                     b.ToTable("StavkeKataloga");
                 });
 
+            modelBuilder.Entity("ProdavnicaNaocara.Data.Entities.Ulica", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
 
+                    b.Property<int>("MestoId");
+
+                    b.Property<string>("Naziv");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MestoId");
+
+                    b.ToTable("Ulice");
+                });
 
             modelBuilder.Entity("ProdavnicaNaocara.Data.Models.Proizvod", b =>
                 {
@@ -121,7 +151,13 @@ namespace ProdavnicaNaocara.Data.Migrations
                     b.ToTable("Proizvodjaci");
                 });
 
-
+            modelBuilder.Entity("ProdavnicaNaocara.Data.Entities.Adresa", b =>
+                {
+                    b.HasOne("ProdavnicaNaocara.Data.Entities.Ulica", "Ulica")
+                        .WithMany("Adrese")
+                        .HasForeignKey("UlicaId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
 
             modelBuilder.Entity("ProdavnicaNaocara.Data.Entities.Cena", b =>
                 {
@@ -141,6 +177,14 @@ namespace ProdavnicaNaocara.Data.Migrations
                     b.HasOne("ProdavnicaNaocara.Data.Models.Proizvod", "ProizvodStavke")
                         .WithOne("Stavka")
                         .HasForeignKey("ProdavnicaNaocara.Data.Entities.StavkaKataloga", "ProizvodId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("ProdavnicaNaocara.Data.Entities.Ulica", b =>
+                {
+                    b.HasOne("ProdavnicaNaocara.Data.Entities.Mesto", "Mesto")
+                        .WithMany("Ulice")
+                        .HasForeignKey("MestoId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

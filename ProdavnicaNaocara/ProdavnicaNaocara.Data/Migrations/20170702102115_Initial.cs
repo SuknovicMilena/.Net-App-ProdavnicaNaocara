@@ -49,24 +49,7 @@ namespace ProdavnicaNaocara.Data.Migrations
                     table.PrimaryKey("PK_Proizvodjaci", x => x.Id);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Ulice",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    MestoId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Ulice", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Ulice_Mesta_MestoId",
-                        column: x => x.MestoId,
-                        principalTable: "Mesta",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
+
 
             migrationBuilder.CreateTable(
                 name: "Proizvodi",
@@ -85,26 +68,6 @@ namespace ProdavnicaNaocara.Data.Migrations
                         name: "FK_Proizvodi_Proizvodjaci_ProizvodjacId",
                         column: x => x.ProizvodjacId,
                         principalTable: "Proizvodjaci",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Adrese",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Broj = table.Column<int>(nullable: false),
-                    UlicaId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Adrese", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Adrese_Ulice_UlicaId",
-                        column: x => x.UlicaId,
-                        principalTable: "Ulice",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -158,10 +121,6 @@ namespace ProdavnicaNaocara.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Adrese_UlicaId",
-                table: "Adrese",
-                column: "UlicaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Cene_ProizvodId",
@@ -179,10 +138,7 @@ namespace ProdavnicaNaocara.Data.Migrations
                 column: "ProizvodId",
                 unique: true);
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Ulice_MestoId",
-                table: "Ulice",
-                column: "MestoId");
+
 
             migrationBuilder.CreateIndex(
                 name: "IX_Proizvodi_ProizvodjacId",
@@ -192,8 +148,7 @@ namespace ProdavnicaNaocara.Data.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Adrese");
+
 
             migrationBuilder.DropTable(
                 name: "Cene");
@@ -201,8 +156,6 @@ namespace ProdavnicaNaocara.Data.Migrations
             migrationBuilder.DropTable(
                 name: "StavkeKataloga");
 
-            migrationBuilder.DropTable(
-                name: "Ulice");
 
             migrationBuilder.DropTable(
                 name: "Katalozi");

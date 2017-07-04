@@ -28,6 +28,13 @@ namespace ProdavnicaNaocara.Api.Controllers
             return Ok(ulice);
 
         }
+        [HttpGet("{Id}")]
+        public IActionResult GetAllUliceById(int Id)
+        {
+            var ulica = UlicaRepostitory.GetById(Id);
+            return Ok(ulica);
+
+        }
         [HttpPost]
         public IActionResult Add([FromBody]UlicaModel model)
         {

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProdavnicaNaocara.Data.Entities
@@ -14,5 +15,8 @@ namespace ProdavnicaNaocara.Data.Entities
         [ForeignKey("UlicaId")]
         [InverseProperty("Adrese")]
         public Ulica Ulica { get; set; }
+
+        [InverseProperty("Adresa")]
+        public List<Kupac> Kupci { get; set; }
     }
 }

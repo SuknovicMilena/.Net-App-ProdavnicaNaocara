@@ -13,5 +13,8 @@ namespace ProdavnicaNaocara.Data.Entities
 
         [InverseProperty("Katalog")]
         public List<StavkaKataloga> Stavke { get; set; }
+
+        [InverseProperty("Katalog")]
+        public List<ZahtevZaPonudom> ZahteviZaPonudom { get; set; }
     }
 }

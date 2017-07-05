@@ -19,6 +19,13 @@ namespace ProdavnicaNaocara.Data
         public DbSet<Ulica> Ulice { get; set; }
         public DbSet<Adresa> Adrese { get; set; }
         public DbSet<Zaposleni> Zaposleni { get; set; }
+
+        public DbSet<Kupac> Kupac { get; set; }
+
+        public DbSet<PonudaKupcu> PonudaKupcu { get; set; }
+
+        public DbSet<ZahtevZaPonudom> ZahtevZaPonudom { get; set; }
+
         public ProdavnicaNaocaraDbContext(DbContextOptions<ProdavnicaNaocaraDbContext> options)
             : base(options)
         { }

@@ -40,6 +40,7 @@ namespace ProdavnicaNaocara.Api
             services.AddScoped<UlicaRepostitory>();
             services.AddScoped<AdresaRepository>();
             services.AddScoped<ZaposleniRepository>();
+            services.AddScoped<KupacRepository>();
 
             services.AddMvc()
                     .AddJsonOptions(options =>

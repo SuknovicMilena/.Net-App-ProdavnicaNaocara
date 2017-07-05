@@ -9,7 +9,7 @@ namespace ProdavnicaNaocara.Data.Entities
     public class Kupac
     {
         public int Id { get; set; }
-        public string naziv { get; set; }
+        public string Naziv { get; set; }
         public string BrojTelefona { get; set; }
 
         [Required]

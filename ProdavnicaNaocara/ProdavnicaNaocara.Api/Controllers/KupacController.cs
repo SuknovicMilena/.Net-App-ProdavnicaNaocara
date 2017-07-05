@@ -15,13 +15,12 @@ namespace ProdavnicaNaocara.Api.Controllers
 
         private KupacRepository kupacRepository;
         private AdresaRepository adresaRepository;
-        private UlicaRepostitory ulicaRepostitory;
 
-        public KupacController(KupacRepository kupacRepository, AdresaRepository adresaRepository, UlicaRepostitory ulicaRepostitory)
+        public KupacController(KupacRepository kupacRepository, AdresaRepository adresaRepository)
         {
             this.kupacRepository = kupacRepository;
             this.adresaRepository = adresaRepository;
-            this.ulicaRepostitory = ulicaRepostitory;
+
 
         }
         [HttpGet]

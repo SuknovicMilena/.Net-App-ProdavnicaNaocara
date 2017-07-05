@@ -41,6 +41,7 @@ namespace ProdavnicaNaocara.Api
             services.AddScoped<AdresaRepository>();
             services.AddScoped<ZaposleniRepository>();
             services.AddScoped<KupacRepository>();
+            services.AddScoped<ZahtevZaPonudomRepository>();
 
             services.AddMvc()
                     .AddJsonOptions(options =>

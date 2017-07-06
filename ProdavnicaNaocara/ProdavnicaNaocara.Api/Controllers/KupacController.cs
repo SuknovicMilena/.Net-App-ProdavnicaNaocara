@@ -35,7 +35,7 @@ namespace ProdavnicaNaocara.Api.Controllers
             var adresa = adresaRepository.GetById(kupacModel.Id);
             if (adresa == null)
             {
-                BadRequest("Ne postoji ta adresa, probajte drugu");
+                return NotFound("Ne postoji ta adresa, probajte drugu");
             }
             var kupac = new Kupac
             {
@@ -57,7 +57,7 @@ namespace ProdavnicaNaocara.Api.Controllers
 
             if (kupac == null)
             {
-                BadRequest("Taj kupac ne postoji");
+                return NotFound("Taj kupac ne postoji");
             }
             kupac.Naziv = model.Naziv;
             kupac.BrojTelefona = model.BrojTelefona;
@@ -71,7 +71,7 @@ namespace ProdavnicaNaocara.Api.Controllers
             var kupac = kupacRepository.GetById(Id);
             if (kupac == null)
             {
-                BadRequest("Taj kupac ne postoji");
+                return NotFound("Taj kupac ne postoji");
             }
             kupacRepository.Delete(kupac);
             kupacRepository.Save();

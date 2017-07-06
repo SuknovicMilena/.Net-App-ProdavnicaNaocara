@@ -42,7 +42,7 @@ namespace ProdavnicaNaocara.Api.Controllers
             var zaposleni = zaposleniRepository.GetById(Id);
             if (zaposleni == null)
             {
-                BadRequest("Ne postoji taj zaposleni.");
+                return NotFound("Ne postoji taj zaposleni.");
             }
             zaposleni.Naziv = model.Naziv;
             zaposleniRepository.Save();
@@ -54,7 +54,7 @@ namespace ProdavnicaNaocara.Api.Controllers
             var zaposleni = zaposleniRepository.GetById(Id);
             if (zaposleni == null)
             {
-                BadRequest("Ne postoji taj zaposleni.");
+                return NotFound("Ne postoji taj zaposleni.");
             }
             zaposleniRepository.Delete(zaposleni);
             zaposleniRepository.Save();

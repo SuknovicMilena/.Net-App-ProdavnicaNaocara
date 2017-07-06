@@ -44,7 +44,7 @@ namespace ProdavnicaNaocara.Api.Controllers
 
             if (proizvodIzBaze == null)
             {
-                return BadRequest($"Proizvod sa id-em {model.ProizvodId} ne postoji!");
+                return NotFound($"Proizvod sa id-em {model.ProizvodId} ne postoji!");
             }
 
             var cenaZaBazu = new Cena
@@ -74,7 +74,8 @@ namespace ProdavnicaNaocara.Api.Controllers
 
             if (cenaIzBaze == null)
             {
-                return BadRequest($"Crna sa id-em {cenaIzBaze} ne postoji!");
+
+                return NotFound($"Crna sa id-em {cenaIzBaze} ne postoji!");
             }
 
 

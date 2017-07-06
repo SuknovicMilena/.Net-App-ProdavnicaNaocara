@@ -41,7 +41,7 @@ namespace ProdavnicaNaocara.Api.Controllers
             var mesto = MestoRepository.GetById(model.MestoId);
             if (mesto == null)
             {
-                BadRequest("Izabrano mesto ne postoji!");
+                return NotFound("Izabrano mesto ne postoji!");
             }
             var ulica = new Ulica
             {
@@ -60,12 +60,12 @@ namespace ProdavnicaNaocara.Api.Controllers
             var ulica = UlicaRepostitory.GetById(Id);
             if (ulica == null)
             {
-                BadRequest("Izabrana ulica ne postoji!");
+                return NotFound("Izabrana ulica ne postoji!");
             }
             var mesto = MestoRepository.GetById(model.MestoId);
             if (mesto == null)
             {
-                BadRequest("Izabrano mesto ne postoji!");
+                return NotFound("Izabrano mesto ne postoji!");
             }
             ulica.Naziv = model.Naziv;
             ulica.MestoId = model.MestoId;
@@ -80,7 +80,7 @@ namespace ProdavnicaNaocara.Api.Controllers
             var ulica = UlicaRepostitory.GetById(Id);
             if (ulica == null)
             {
-                BadRequest("Izabrana ulica ne postoji!");
+                return NotFound("Izabrana ulica ne postoji!");
             }
 
             UlicaRepostitory.Delete(ulica);

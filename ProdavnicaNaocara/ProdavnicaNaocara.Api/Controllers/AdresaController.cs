@@ -31,7 +31,7 @@ namespace ProdavnicaNaocara.Api.Controllers
             var ulica = ulicaRepository.GetById(model.UlicaId);
             if (ulica == null)
             {
-                BadRequest("Trazena ulica ne postoji");
+                return NotFound("Trazena ulica ne postoji");
             }
             var adresa = new Adresa
             {
@@ -51,12 +51,12 @@ namespace ProdavnicaNaocara.Api.Controllers
             var adresa = adresaRepository.GetById(Id);
             if (adresa == null)
             {
-                BadRequest("Trazena adresa ne postoji");
+                return NotFound("Trazena adresa ne postoji");
             }
             var ulicaId = ulicaRepository.GetById(model.UlicaId);
             if (ulicaId == null)
             {
-                BadRequest("Trazena ulica ne postoji");
+                return NotFound("Trazena ulica ne postoji");
             }
 
             adresa.Broj = model.Broj;
@@ -72,7 +72,7 @@ namespace ProdavnicaNaocara.Api.Controllers
             var adresa = adresaRepository.GetById(Id);
             if (adresa == null)
             {
-                BadRequest("Trazena adresa ne postoji.");
+                return NotFound("Trazena adresa ne postoji.");
             }
             adresaRepository.Delete(adresa);
             adresaRepository.Save();

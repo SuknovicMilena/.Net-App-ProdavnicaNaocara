@@ -44,7 +44,7 @@ namespace ProdavnicaNaocara.Api.Controllers
             var katalogIzBaze = katalogRepository.GetById(id);
             if (katalogIzBaze == null)
             {
-                BadRequest("Ne postoji taj katalog.");
+                return NotFound("Ne postoji taj katalog.");
             }
             katalogIzBaze.Naziv = model.Naziv;
             katalogRepository.Save();
@@ -57,7 +57,7 @@ namespace ProdavnicaNaocara.Api.Controllers
             var katalogIzBaze = katalogRepository.GetById(id);
             if (katalogIzBaze == null)
             {
-                BadRequest("Ne postoji taj katalog.");
+                return NotFound("Ne postoji taj katalog.");
             }
             katalogRepository.Delete(katalogIzBaze);
             katalogRepository.Save();

@@ -43,7 +43,7 @@ namespace ProdavnicaNaocara.Api.Controllers
             var mesto = MestoRepository.GetById(Id);
             if (mesto == null)
             {
-                BadRequest("Trazeno mesto ne postoji u bazi.");
+                return NotFound("Trazeno mesto ne postoji u bazi.");
             }
             mesto.Naziv = model.Naziv;
             MestoRepository.Save();
@@ -56,7 +56,7 @@ namespace ProdavnicaNaocara.Api.Controllers
             var mesto = MestoRepository.GetById(Id);
             if (mesto == null)
             {
-                BadRequest("Trazeno mesto ne postoji u bazi.");
+                return NotFound("Trazeno mesto ne postoji u bazi.");
             }
             MestoRepository.Delete(mesto);
             MestoRepository.Save();

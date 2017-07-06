@@ -38,13 +38,13 @@ namespace ProdavnicaNaocara.Api.Controllers
             var katalog = katalogRepository.GetById(zahtevModel.Id);
             if (katalog == null)
             {
-                BadRequest("Taj katalog ne postoji, probajte drugi!");
+                return NotFound("Taj katalog ne postoji, probajte drugi!");
             }
 
             var kupac = kupacRepository.GetById(zahtevModel.Id);
             if (kupac == null)
             {
-                BadRequest("Taj kupac ne postoji, probajte drugi!");
+                return NotFound("Taj kupac ne postoji, probajte drugi!");
 
             }
             var zahtev = new ZahtevZaPonudom
@@ -66,7 +66,7 @@ namespace ProdavnicaNaocara.Api.Controllers
             var zahtev = zahtevZaPonudomRepository.GetById(Id);
             if (zahtev == null)
             {
-                BadRequest("Taj zahtev ne postoji!");
+                return NotFound("Taj zahtev ne postoji!");
             }
             zahtev.Datum = zahtevModel.Datum;
             zahtev.KatalogId = zahtevModel.KatalogId;
@@ -84,7 +84,7 @@ namespace ProdavnicaNaocara.Api.Controllers
             var zahtev = zahtevZaPonudomRepository.GetById(Id);
             if (zahtev == null)
             {
-                BadRequest("Taj zahtev ne postoji!");
+                return NotFound("Taj zahtev ne postoji!");
             }
             zahtevZaPonudomRepository.Delete(zahtev);
             zahtevZaPonudomRepository.Save();

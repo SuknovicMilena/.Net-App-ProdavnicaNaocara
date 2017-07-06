@@ -37,7 +37,7 @@ namespace ProdavnicaNaocara.Api.Controllers
             var proizvod = proizvodiRepository.GetById(model.ProizvodId);
             if (proizvod == null)
             {
-                BadRequest("Ne postoji taj proizvod koji hocete da dodate");
+                return NotFound("Ne postoji taj proizvod koji hocete da dodate");
             }
             var stavka = new StavkaKataloga
             {
@@ -57,7 +57,7 @@ namespace ProdavnicaNaocara.Api.Controllers
             var stavkaIzBaze = stavkaKatalogaRepository.GetById(RbStavke, KatalogId);
             if (stavkaIzBaze == null)
             {
-                BadRequest("Ne postoji u bazi ta stavka");
+                return NotFound("Ne postoji u bazi ta stavka");
             }
 
             stavkaIzBaze.ProizvodId = model.ProizvodId;
@@ -72,7 +72,7 @@ namespace ProdavnicaNaocara.Api.Controllers
             var stavkaIzBaze = stavkaKatalogaRepository.GetById(RbStavke, KatalogId);
             if (stavkaIzBaze == null)
             {
-                BadRequest("Ne postoji u bazi ta stavka");
+                return NotFound("Ne postoji u bazi ta stavka");
             }
             stavkaKatalogaRepository.Delete(stavkaIzBaze);
             stavkaKatalogaRepository.Save();

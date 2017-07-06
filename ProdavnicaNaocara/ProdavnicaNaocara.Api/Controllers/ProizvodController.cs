@@ -78,7 +78,7 @@ namespace ProdavnicaNaocara.Api.Controllers
 
             if (proizvodjacIzBaze == null)
             {
-                return BadRequest($"Proizvodjac sa id-em {model.ProizvodjacId} ne postoji!");
+                return NotFound($"Proizvodjac sa id-em {model.ProizvodjacId} ne postoji!");
             }
 
             proizvodIzBaze.Ime = model.Ime;

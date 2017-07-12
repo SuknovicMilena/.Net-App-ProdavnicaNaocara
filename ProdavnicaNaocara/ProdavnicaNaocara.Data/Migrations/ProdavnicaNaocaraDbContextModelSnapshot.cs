@@ -207,6 +207,24 @@ namespace ProdavnicaNaocara.Data.Migrations
                     b.ToTable("Proizvodjaci");
                 });
 
+            modelBuilder.Entity("ProdavnicaNaocara.Data.Entities.Reklamacija", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("Datum");
+
+                    b.Property<int>("FakturaId");
+
+                    b.Property<string>("Napomena");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FakturaId");
+
+                    b.ToTable("Reklamacije");
+                });
+
             modelBuilder.Entity("ProdavnicaNaocara.Data.Entities.StavkaFakture", b =>
                 {
                     b.Property<int>("RbStavkeId")
@@ -279,6 +297,27 @@ namespace ProdavnicaNaocara.Data.Migrations
                     b.ToTable("StavkeNarudzbenice");
                 });
 
+            modelBuilder.Entity("ProdavnicaNaocara.Data.Entities.StavkaOtpremnice", b =>
+                {
+                    b.Property<int>("RbStavkeId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("OtpremnicaId");
+
+                    b.Property<int>("Kolicina");
+
+                    b.Property<int>("ProizvodId");
+
+                    b.HasKey("RbStavkeId", "OtpremnicaId")
+                        .HasName("PK_StavkaOtpremnice");
+
+                    b.HasAlternateKey("RbStavkeId");
+
+                    b.HasIndex("OtpremnicaId");
+
+                    b.ToTable("StavkeOtpremnice");
+                });
+
             modelBuilder.Entity("ProdavnicaNaocara.Data.Entities.StavkaPonude", b =>
                 {
                     b.Property<int>("RbStavkeId")
@@ -302,6 +341,29 @@ namespace ProdavnicaNaocara.Data.Migrations
                     b.HasIndex("ProizvodId");
 
                     b.ToTable("StavkePonude");
+                });
+
+            modelBuilder.Entity("ProdavnicaNaocara.Data.Entities.StavkaReklamacije", b =>
+                {
+                    b.Property<int>("RbStavkeId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("ReklamacijaId");
+
+                    b.Property<string>("Opis");
+
+                    b.Property<int>("ProizvodId");
+
+                    b.HasKey("RbStavkeId", "ReklamacijaId")
+                        .HasName("PK_StavkaReklamacije");
+
+                    b.HasAlternateKey("RbStavkeId");
+
+                    b.HasIndex("ProizvodId");
+
+                    b.HasIndex("ReklamacijaId");
+
+                    b.ToTable("StavkeReklamacije");
                 });
 
             modelBuilder.Entity("ProdavnicaNaocara.Data.Entities.Ulica", b =>
@@ -431,6 +493,14 @@ namespace ProdavnicaNaocara.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("ProdavnicaNaocara.Data.Entities.Reklamacija", b =>
+                {
+                    b.HasOne("ProdavnicaNaocara.Data.Entities.Faktura", "Faktura")
+                        .WithMany("Reklamacije")
+                        .HasForeignKey("FakturaId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("ProdavnicaNaocara.Data.Entities.StavkaFakture", b =>
                 {
                     b.HasOne("ProdavnicaNaocara.Data.Entities.Proizvod", "ProizvodFakt")
@@ -465,6 +535,14 @@ namespace ProdavnicaNaocara.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("ProdavnicaNaocara.Data.Entities.StavkaOtpremnice", b =>
+                {
+                    b.HasOne("ProdavnicaNaocara.Data.Entities.Otpremnica", "OtpremnicaS")
+                        .WithMany("StavkeOtpremnice")
+                        .HasForeignKey("OtpremnicaId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("ProdavnicaNaocara.Data.Entities.StavkaPonude", b =>
                 {
                     b.HasOne("ProdavnicaNaocara.Data.Entities.Ponuda", "PonudaStavki")
@@ -475,6 +553,19 @@ namespace ProdavnicaNaocara.Data.Migrations
                     b.HasOne("ProdavnicaNaocara.Data.Entities.Proizvod", "ProizvodPonuda")
                         .WithMany("ProizvodiPonuda")
                         .HasForeignKey("ProizvodId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("ProdavnicaNaocara.Data.Entities.StavkaReklamacije", b =>
+                {
+                    b.HasOne("ProdavnicaNaocara.Data.Entities.Proizvod", "ProizvodZaReklamaciju")
+                        .WithMany("StavkeReklamacije")
+                        .HasForeignKey("ProizvodId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("ProdavnicaNaocara.Data.Entities.Reklamacija", "Reklamacija")
+                        .WithMany("StavkeReklamacije")
+                        .HasForeignKey("ReklamacijaId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

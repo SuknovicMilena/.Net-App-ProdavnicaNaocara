@@ -36,7 +36,8 @@ namespace ProdavnicaNaocara.Data.Entities
         [InverseProperty("Otpremnica")]
         public List<Faktura> Otpremnice { get; set; }
 
-
+        [InverseProperty("OtpremnicaS")]
+        public List<StavkaOtpremnice> StavkeOtpremnice { get; set; }
 
     }
 }

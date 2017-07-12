@@ -35,5 +35,8 @@ namespace ProdavnicaNaocara.Data.Entities
 
         [InverseProperty("ProizvodFakt")]
         public List<StavkaFakture> ProizvodiUFakt { get; set; }
+
+        [InverseProperty("ProizvodZaReklamaciju")]
+        public List<StavkaReklamacije> StavkeReklamacije { get; set; }
     }
 }

@@ -339,13 +339,13 @@ namespace ProdavnicaNaocara.Data.Migrations
                         column: x => x.KupacId,
                         principalTable: "Kupci",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Otpremnice_Narudzbenice_NarudzbenicaKupcaId",
                         column: x => x.NarudzbenicaKupcaId,
                         principalTable: "Narudzbenice",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Otpremnice_Zaposleni_ZaposleniId",
                         column: x => x.ZaposleniId,
@@ -399,6 +399,77 @@ namespace ProdavnicaNaocara.Data.Migrations
                         name: "FK_Fakture_Otpremnice_OtpremnicaId",
                         column: x => x.OtpremnicaId,
                         principalTable: "Otpremnice",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "StavkeOtpremnice",
+                columns: table => new
+                {
+                    RbStavkeId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    OtpremnicaId = table.Column<int>(nullable: false),
+                    Kolicina = table.Column<int>(nullable: false),
+                    ProizvodId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StavkaOtpremnice", x => new { x.RbStavkeId, x.OtpremnicaId });
+                    table.UniqueConstraint("AK_StavkeOtpremnice_RbStavkeId", x => x.RbStavkeId);
+                    table.ForeignKey(
+                        name: "FK_StavkeOtpremnice_Otpremnice_OtpremnicaId",
+                        column: x => x.OtpremnicaId,
+                        principalTable: "Otpremnice",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Reklamacije",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Datum = table.Column<DateTime>(nullable: false),
+                    FakturaId = table.Column<int>(nullable: false),
+                    Napomena = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Reklamacije", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Reklamacije_Fakture_FakturaId",
+                        column: x => x.FakturaId,
+                        principalTable: "Fakture",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "StavkeReklamacije",
+                columns: table => new
+                {
+                    RbStavkeId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    ReklamacijaId = table.Column<int>(nullable: false),
+                    Opis = table.Column<string>(nullable: true),
+                    ProizvodId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StavkaReklamacije", x => new { x.RbStavkeId, x.ReklamacijaId });
+                    table.UniqueConstraint("AK_StavkeReklamacije_RbStavkeId", x => x.RbStavkeId);
+                    table.ForeignKey(
+                        name: "FK_StavkeReklamacije_Proizvodi_ProizvodId",
+                        column: x => x.ProizvodId,
+                        principalTable: "Proizvodi",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_StavkeReklamacije_Reklamacije_ReklamacijaId",
+                        column: x => x.ReklamacijaId,
+                        principalTable: "Reklamacije",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -460,6 +531,11 @@ namespace ProdavnicaNaocara.Data.Migrations
                 column: "ProizvodjacId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Reklamacije_FakturaId",
+                table: "Reklamacije",
+                column: "FakturaId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_StavkeFakture_ProizvodId",
                 table: "StavkeFakture",
                 column: "ProizvodId");
@@ -486,6 +562,11 @@ namespace ProdavnicaNaocara.Data.Migrations
                 column: "PonudaId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_StavkeOtpremnice_OtpremnicaId",
+                table: "StavkeOtpremnice",
+                column: "OtpremnicaId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_StavkePonude_PonudaId",
                 table: "StavkePonude",
                 column: "PonudaId");
@@ -494,6 +575,16 @@ namespace ProdavnicaNaocara.Data.Migrations
                 name: "IX_StavkePonude_ProizvodId",
                 table: "StavkePonude",
                 column: "ProizvodId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StavkeReklamacije_ProizvodId",
+                table: "StavkeReklamacije",
+                column: "ProizvodId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StavkeReklamacije_ReklamacijaId",
+                table: "StavkeReklamacije",
+                column: "ReklamacijaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Ulice_MestoId",
@@ -517,9 +608,6 @@ namespace ProdavnicaNaocara.Data.Migrations
                 name: "Cene");
 
             migrationBuilder.DropTable(
-                name: "Fakture");
-
-            migrationBuilder.DropTable(
                 name: "StavkeFakture");
 
             migrationBuilder.DropTable(
@@ -529,22 +617,34 @@ namespace ProdavnicaNaocara.Data.Migrations
                 name: "StavkeNarudzbenice");
 
             migrationBuilder.DropTable(
+                name: "StavkeOtpremnice");
+
+            migrationBuilder.DropTable(
                 name: "StavkePonude");
 
             migrationBuilder.DropTable(
-                name: "Otpremnice");
+                name: "StavkeReklamacije");
 
             migrationBuilder.DropTable(
                 name: "Proizvodi");
+
+            migrationBuilder.DropTable(
+                name: "Reklamacije");
+
+            migrationBuilder.DropTable(
+                name: "Proizvodjaci");
+
+            migrationBuilder.DropTable(
+                name: "Fakture");
+
+            migrationBuilder.DropTable(
+                name: "Otpremnice");
 
             migrationBuilder.DropTable(
                 name: "Narudzbenice");
 
             migrationBuilder.DropTable(
                 name: "Zaposleni");
-
-            migrationBuilder.DropTable(
-                name: "Proizvodjaci");
 
             migrationBuilder.DropTable(
                 name: "Ponude");

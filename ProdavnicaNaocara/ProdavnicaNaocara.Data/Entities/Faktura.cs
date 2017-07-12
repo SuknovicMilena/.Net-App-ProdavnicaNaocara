@@ -18,5 +18,7 @@ namespace ProdavnicaNaocara.Data.Entities
         [InverseProperty("Otpremnice")]
         public Otpremnica Otpremnica { get; set; }
 
+        [InverseProperty("Faktura")]
+        public List<Reklamacija> Reklamacije { get; set; }
     }
 }

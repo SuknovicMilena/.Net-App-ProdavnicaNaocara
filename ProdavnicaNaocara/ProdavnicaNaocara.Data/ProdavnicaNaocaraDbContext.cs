@@ -30,7 +30,9 @@ namespace ProdavnicaNaocara.Data
         public DbSet<StavkaPonude> StavkePonude { get; set; }
         public DbSet<Faktura> Fakture { get; set; }
         public DbSet<StavkaFakture> StavkeFakture { get; set; }
-
+        public DbSet<StavkaOtpremnice> StavkeOtpremnice { get; set; }
+        public DbSet<Reklamacija> Reklamacije { get; set; }
+        public DbSet<StavkaReklamacije> StavkeReklamacije { get; set; }
 
         public ProdavnicaNaocaraDbContext(DbContextOptions<ProdavnicaNaocaraDbContext> options)
             : base(options)
@@ -69,6 +71,20 @@ namespace ProdavnicaNaocara.Data
             {
                 entity.HasKey(e => new { e.RbStavkeId, e.FakturaId })
                .HasName("PK_StavkaFakture");
+
+
+            });
+            modelBuilder.Entity<StavkaOtpremnice>(entity =>
+            {
+                entity.HasKey(e => new { e.RbStavkeId, e.OtpremnicaId })
+               .HasName("PK_StavkaOtpremnice");
+
+
+            });
+            modelBuilder.Entity<StavkaReklamacije>(entity =>
+            {
+                entity.HasKey(e => new { e.RbStavkeId, e.ReklamacijaId })
+               .HasName("PK_StavkaReklamacije");
 
 
             });

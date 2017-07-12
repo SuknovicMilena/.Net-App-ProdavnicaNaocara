@@ -9,9 +9,10 @@ using ProdavnicaNaocara.Common.Enums;
 namespace ProdavnicaNaocara.Data.Migrations
 {
     [DbContext(typeof(ProdavnicaNaocaraDbContext))]
-    partial class ProdavnicaNaocaraDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170712201336_IzmenaStavkeOtpremnice")]
+    partial class IzmenaStavkeOtpremnice
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2")

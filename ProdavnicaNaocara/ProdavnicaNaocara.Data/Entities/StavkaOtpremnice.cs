@@ -25,6 +25,10 @@ namespace ProdavnicaNaocara.Data.Entities
         [InverseProperty("StavkeOtpremnice")]
         public Otpremnica OtpremnicaS { get; set; }
 
+        [ForeignKey("ProizvodId")]
+        [InverseProperty("StavkeOtpremnice")]
+        public Proizvod ProizvodOtpremnica { get; set; }
+
 
     }
 }

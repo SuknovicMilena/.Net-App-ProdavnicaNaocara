@@ -1,4 +1,4 @@
-﻿using ProdavnicaNaocara.Data.Models;
+﻿using ProdavnicaNaocara.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;

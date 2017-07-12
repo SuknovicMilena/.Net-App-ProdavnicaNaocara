@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace ProdavnicaNaocara.Data.Models
+namespace ProdavnicaNaocara.Data.Entities
 {
     public class Proizvodjac
     {

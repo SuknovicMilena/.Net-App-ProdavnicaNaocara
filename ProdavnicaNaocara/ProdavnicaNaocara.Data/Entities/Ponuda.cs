@@ -1,4 +1,4 @@
-﻿using ProdavnicaNaocara.Data.Models;
+﻿using ProdavnicaNaocara.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -7,7 +7,7 @@ using System.Text;
 
 namespace ProdavnicaNaocara.Data.Entities
 {
-    public class PonudaKupcu
+    public class Ponuda
     {
         public int Id { get; set; }
         public DateTime Datum { get; set; }
@@ -20,5 +20,15 @@ namespace ProdavnicaNaocara.Data.Entities
         [ForeignKey("ZahtevId")]
         [InverseProperty("PonudaKupcu")]
         public ZahtevZaPonudom ZahtevZaPonudom { get; set; }
+
+        [InverseProperty("Ponuda")]
+        public List<Narudzbenica> Ponude { get; set; }
+
+        [InverseProperty("PonudaStavki")]
+        public List<StavkaPonude> StavkePonude { get; set; }
+
+        [InverseProperty("PonudaZaNar")]
+        public List<StavkaNarudzbenice> PonudeZaNar { get; set; }
+
     }
 }

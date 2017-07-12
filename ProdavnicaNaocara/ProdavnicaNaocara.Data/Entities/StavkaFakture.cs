@@ -1,5 +1,4 @@
-﻿using ProdavnicaNaocara.Data.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,26 +6,22 @@ using System.Text;
 
 namespace ProdavnicaNaocara.Data.Entities
 {
-    public class StavkaKataloga
+    public class StavkaFakture
     {
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int RbStavkeId { get; set; }
+        public int FakturaId { get; set; }
+        public double Cena { get; set; }
+        public int Kolicina { get; set; }
 
         [Required]
         public int ProizvodId { get; set; }
 
-        [Required]
-        public int KatalogId { get; set; }
-
-        public string Status { get; set; }
-
-        [ForeignKey("KatalogId")]
-        [InverseProperty("Stavke")]
-        public Katalog Katalog { get; set; }
-
         [ForeignKey("ProizvodId")]
-        [InverseProperty("Stavka")]
-        public Proizvod ProizvodStavke { get; set; }
+        [InverseProperty("ProizvodiUFakt")]
+        public Proizvod ProizvodFakt { get; set; }
+
     }
 }

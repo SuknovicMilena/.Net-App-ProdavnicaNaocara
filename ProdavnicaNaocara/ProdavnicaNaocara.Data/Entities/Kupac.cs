@@ -23,8 +23,11 @@ namespace ProdavnicaNaocara.Data.Entities
         public List<ZahtevZaPonudom> ZahteviZaPonudom { get; set; }
 
 
+        [InverseProperty("KupacNarudzbenica")]
+        public List<Narudzbenica> KupciNarudzbenica { get; set; } = new List<Narudzbenica>();
 
 
-
+        [InverseProperty("KupacOtprema")]
+        public List<Otpremnica> KupaciZaOtpremu { get; set; }
     }
 }

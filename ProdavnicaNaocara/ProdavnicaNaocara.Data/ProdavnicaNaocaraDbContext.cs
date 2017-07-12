@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using ProdavnicaNaocara.Data.Entities;
-using ProdavnicaNaocara.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -19,12 +19,18 @@ namespace ProdavnicaNaocara.Data
         public DbSet<Ulica> Ulice { get; set; }
         public DbSet<Adresa> Adrese { get; set; }
         public DbSet<Zaposleni> Zaposleni { get; set; }
+        public DbSet<Kupac> Kupci { get; set; }
+        public DbSet<Ponuda> Ponude { get; set; }
+        public DbSet<ZahtevZaPonudom> ZahteviZaPonudom { get; set; }
+        public DbSet<Narudzbenica> Narudzbenice { get; set; }
 
-        public DbSet<Kupac> Kupac { get; set; }
+        public DbSet<StavkaNarudzbenice> StavkeNarudzbenice { get; set; }
+        public DbSet<Otpremnica> Otpremnice { get; set; }
 
-        public DbSet<PonudaKupcu> PonudaKupcu { get; set; }
+        public DbSet<StavkaPonude> StavkePonude { get; set; }
+        public DbSet<Faktura> Fakture { get; set; }
+        public DbSet<StavkaFakture> StavkeFakture { get; set; }
 
-        public DbSet<ZahtevZaPonudom> ZahtevZaPonudom { get; set; }
 
         public ProdavnicaNaocaraDbContext(DbContextOptions<ProdavnicaNaocaraDbContext> options)
             : base(options)
@@ -32,6 +38,7 @@ namespace ProdavnicaNaocara.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
             modelBuilder.Entity<Cena>(entity =>
             {
                 entity.HasKey(e => new { e.Id, e.ProizvodId })
@@ -43,6 +50,30 @@ namespace ProdavnicaNaocara.Data
                 entity.HasKey(e => new { e.RbStavkeId, e.KatalogId })
                .HasName("PK_StavkaKataloga");
             });
+
+            modelBuilder.Entity<StavkaPonude>(entity =>
+            {
+                entity.HasKey(e => new { e.RbStavkeId, e.PonudaId })
+               .HasName("PK_StavkaPonude");
+
+
+            });
+            modelBuilder.Entity<StavkaNarudzbenice>(entity =>
+            {
+                entity.HasKey(e => new { e.RbStavkeId, e.NarudzbenicaKupcaId })
+               .HasName("PK_StavkaNarudzbenice");
+
+
+            });
+            modelBuilder.Entity<StavkaFakture>(entity =>
+            {
+                entity.HasKey(e => new { e.RbStavkeId, e.FakturaId })
+               .HasName("PK_StavkaFakture");
+
+
+            });
         }
+
+
     }
 }

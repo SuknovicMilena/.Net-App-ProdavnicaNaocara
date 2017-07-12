@@ -13,5 +13,11 @@ namespace ProdavnicaNaocara.Data.Entities
 
         [InverseProperty("Mesto")]
         public List<Ulica> Ulice { get; set; } = new List<Ulica>();
+
+
+
+
+
+
     }
 }

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ProdavnicaNaocara.Data.Models
+namespace ProdavnicaNaocara.Data.Entities
 {
     public class Proizvod
     {
@@ -29,5 +29,11 @@ namespace ProdavnicaNaocara.Data.Models
 
         [InverseProperty("ProizvodStavke")]
         public StavkaKataloga Stavka { get; set; }
+
+        [InverseProperty("ProizvodPonuda")]
+        public List<StavkaPonude> ProizvodiPonuda { get; set; }
+
+        [InverseProperty("ProizvodFakt")]
+        public List<StavkaFakture> ProizvodiUFakt { get; set; }
     }
 }

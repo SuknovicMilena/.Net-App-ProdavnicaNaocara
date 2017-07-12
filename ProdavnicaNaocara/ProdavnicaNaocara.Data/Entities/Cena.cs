@@ -1,4 +1,4 @@
-﻿using ProdavnicaNaocara.Data.Models;
+﻿using ProdavnicaNaocara.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,6 +12,9 @@ namespace ProdavnicaNaocara.Data.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
+        public double IznosCene { get; set; }
+        public int IznosPopusta { get; set; }
+
         [Required]
         public int ProizvodId { get; set; }
 
@@ -19,8 +22,6 @@ namespace ProdavnicaNaocara.Data.Entities
         [ForeignKey("ProizvodId")]
         [InverseProperty("Cene")]
         public Proizvod Proizvod { get; set; }
-
-        public double IznosCene { get; set; }
-        public int IznosPopusta { get; set; }
     }
+
 }

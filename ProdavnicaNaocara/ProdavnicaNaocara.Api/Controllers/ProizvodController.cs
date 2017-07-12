@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProdavnicaNaocara.Common.Models;
-using ProdavnicaNaocara.Data.Models;
+using ProdavnicaNaocara.Data.Entities;
 using ProdavnicaNaocara.Data.Repositories;
 using System.Collections.Generic;
 namespace ProdavnicaNaocara.Api.Controllers

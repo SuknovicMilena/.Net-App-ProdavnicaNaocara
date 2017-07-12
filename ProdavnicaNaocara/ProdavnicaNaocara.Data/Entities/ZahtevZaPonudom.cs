@@ -18,7 +18,6 @@ namespace ProdavnicaNaocara.Data.Entities
         public int KupacId { get; set; }
 
 
-
         [ForeignKey("KatalogId")]
         [InverseProperty("ZahteviZaPonudom")]
         public Katalog Katalog { get; set; }
@@ -28,6 +27,9 @@ namespace ProdavnicaNaocara.Data.Entities
         public Kupac Kupac { get; set; }
 
         [InverseProperty("ZahtevZaPonudom")]
-        public PonudaKupcu PonudaKupcu { get; set; }
+        public Ponuda PonudaKupcu { get; set; }
+
+
+
     }
 }

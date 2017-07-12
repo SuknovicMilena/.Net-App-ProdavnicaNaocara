@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProdavnicaNaocara.Common.Models;
 using ProdavnicaNaocara.Data;
-using ProdavnicaNaocara.Data.Models;
+using ProdavnicaNaocara.Data.Entities;
 using ProdavnicaNaocara.Data.Repositories;
 using System;
 using System.Collections.Generic;
@@ -73,20 +73,20 @@ namespace ProdavnicaNaocara.Api.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-        var proizvodjacIzBaze = proizvodjaciRepository.GetById(id);
+            var proizvodjacIzBaze = proizvodjaciRepository.GetById(id);
 
-        if (proizvodjacIzBaze == null)
-        {
-            return NotFound($"Proizvodjac sa id-jem{proizvodjacIzBaze.Id} ne postoji u bazi");
+            if (proizvodjacIzBaze == null)
+            {
+                return NotFound($"Proizvodjac sa id-jem{proizvodjacIzBaze.Id} ne postoji u bazi");
+            }
+            proizvodjaciRepository.Delete(proizvodjacIzBaze);
+            proizvodjaciRepository.Save();
+            return new NoContentResult();
         }
-        proizvodjaciRepository.Delete(proizvodjacIzBaze);
-        proizvodjaciRepository.Save();
-        return new NoContentResult();
+
+
+
     }
 
 
-       
-    }
-
-    
 }

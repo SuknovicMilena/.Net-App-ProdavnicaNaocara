@@ -1,20 +1,30 @@
+import { KupciComponent } from './components/kupci/kupci.component';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
-import { Http, HttpModule, RequestOptions, XHRBackend } from '@angular/http';
-import { Router } from '@angular/router';
-
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
+import { FooterComponent } from './components/footer/footer.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   imports: [
     BrowserModule,
     HttpModule,
+    FormsModule,
     AppRoutingModule
+
   ],
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    KupciComponent
+  ],
   providers: [
+
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

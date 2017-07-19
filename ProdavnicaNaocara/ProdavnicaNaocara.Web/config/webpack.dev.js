@@ -1,7 +1,5 @@
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
-
-const helpers = require('./helpers');
 const commonConfig = require('./webpack.common.js');
 
 module.exports = webpackMerge(commonConfig, {
@@ -13,11 +11,14 @@ module.exports = webpackMerge(commonConfig, {
   },
 
   module: {
-    rules: []
+    rules: [ ]
   },
 
   devServer: {
     historyApiFallback: true,
-    stats: 'minimal'
+    stats: 'minimal',
+    watchOptions: {
+      ignored: /node_modules/
+    }
   }
 });

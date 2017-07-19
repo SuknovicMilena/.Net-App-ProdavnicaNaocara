@@ -13,7 +13,6 @@ namespace ProdavnicaNaocara.Data.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int RbStavkeId { get; set; }
         public int FakturaId { get; set; }
-        public double Cena { get; set; }
         public int Kolicina { get; set; }
 
         [Required]

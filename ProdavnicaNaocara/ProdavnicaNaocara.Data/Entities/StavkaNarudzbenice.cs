@@ -12,7 +12,6 @@ namespace ProdavnicaNaocara.Data.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int RbStavkeId { get; set; }
         public int Kolicina { get; set; }
-        public double Cena { get; set; }
 
         [Required]
         public int NarudzbenicaKupcaId { get; set; }

@@ -8,6 +8,7 @@ using ProdavnicaNaocara.Data;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using ProdavnicaNaocara.Data.Repositories;
+using Microsoft.Extensions.Options;
 
 namespace ProdavnicaNaocara.Api
 {
@@ -28,6 +29,16 @@ namespace ProdavnicaNaocara.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton(Configuration);
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials());
+            });
+
 
             services.AddDbContext<ProdavnicaNaocaraDbContext>(o => o.UseSqlServer(Configuration.GetConnectionString("prodavnicaDb")));
 
@@ -60,6 +71,8 @@ namespace ProdavnicaNaocara.Api
             app.UseStatusCodePages();
 
             app.UseDeveloperExceptionPage();
+
+            app.UseCors("CorsPolicy");
 
             app.UseMvc();
         }

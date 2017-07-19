@@ -2,15 +2,16 @@ const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 const ManifestPlugin = require('webpack-manifest-plugin');
 
-const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
 const commonConfig = require('./webpack.common.js');
-const helpers = require('./helpers');
+const path = require('./path-helper');
+
+const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
 
 module.exports = webpackMerge(commonConfig, {
   devtool: 'source-map',
 
   output: {
-    path: helpers.root('dist'),
+    path: path.root('dist'),
     publicPath: '/',
     filename: '[name].[chunkhash:8].js',
     chunkFilename: '[id].[chunkhash:8].chunk.js'

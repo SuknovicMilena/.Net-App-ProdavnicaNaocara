@@ -1,24 +1,24 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const StyleLintPlugin = require('stylelint-webpack-plugin');
 
-const helpers = require('./helpers');
+const path = require('./path-helper');
+
+const publicPath = 'http://localhost:8001/';
 
 module.exports = {
   entry: {
     'polyfills': './src/polyfills.ts',
     'vendor': './src/vendor.ts',
-    'app': './src/main.ts',
+    'app': './src/main.ts'
   },
 
   resolve: {
-    extensions: ['.js', '.ts'],
+    extensions: ['.js', '.ts']
   },
 
   output: {
-    publicPath: 'http://localhost:8011/'
+    publicPath: publicPath
   },
 
   module: {
@@ -48,52 +48,38 @@ module.exports = {
         use: 'file-loader?name=assets/[name].[hash].[ext]'
       },
       {
-        test: /bootstrap\/dist\/js\/umd\//,
-        use: 'imports-loader?jQuery=jquery'
+        test: /\.(woff|woff2|ttf|eot)$/,
+        use: 'file-loader?name=fonts/[name].[hash].[ext]'
       },
       {
-        test: /\.scss|\.sass$/,
-        use: [
-          'raw-loader',
-          'postcss-loader',
-          {
-            loader: 'sass-loader',
-            options:
-            {
-              includePaths: ['node_modules/bootstrap-sass/assets/stylesheets']
-            }
-          }
-        ]
+        test: /\.css$/,
+        include: path.root('src', 'app'),
+        loader: ['css-to-string-loader','css-loader']
       }
+
     ]
   },
 
   plugins: [
     new HtmlWebpackPlugin({
       template: 'src/index.html',
-      favicon: 'favicon.ico'
+      favicon: `src/favicon.ico`
     }),
+
     new webpack.ContextReplacementPlugin(
       /angular(\\|\/)core(\\|\/)@angular/,
-      helpers.root('src'),
-      { }
+      path.root('./src'),
+      {}
     ),
+
     new webpack.optimize.CommonsChunkPlugin({
       name: ['app', 'vendor', 'polyfills']
     }),
-    new OpenBrowserPlugin({
-      url: 'http://localhost:8011'
-    }),
+
     new CopyWebpackPlugin([
-      { from: 'src/assets/', to: 'assets' }
+      { from: 'src/assets/', to: 'assets' },
+      { from: 'node_modules/bootstrap/dist/css/bootstrap.min.css', to: '' },
     ]),
-    new StyleLintPlugin({
-      configBasedir: '/'
-    }),
-    new webpack.ProvidePlugin({
-      jQuery: 'jquery',
-      $: 'jquery',
-      jquery: 'jquery'
-    })
-  ]
+
+  ],
 };

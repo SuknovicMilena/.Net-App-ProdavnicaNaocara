@@ -29,6 +29,12 @@ namespace ProdavnicaNaocara.Api.Controllers
             var kupci = kupacRepository.GetAllKupacModel();
             return Ok(kupci);
         }
+        [HttpGet("{Id}")]
+        public IActionResult GetAll(int Id)
+        {
+            var kupci = kupacRepository.GetKupacModelById(Id);
+            return Ok(kupci);
+        }
         [HttpPost]
         public IActionResult Add([FromBody]KupacModel kupacModel)
         {

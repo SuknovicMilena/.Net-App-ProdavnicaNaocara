@@ -1,3 +1,6 @@
+import { KupacComponent } from './components/kupac/kupac.component';
+import { MestoService } from './services/mesto.service';
+import { KupacService } from './services/kupac.service';
 import { KupciComponent } from './components/kupci/kupci.component';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -20,10 +23,12 @@ import { HeaderComponent } from './components/header/header.component';
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    KupciComponent
+    KupciComponent,
+    KupacComponent
   ],
   providers: [
-
+    KupacService,
+    MestoService
   ],
   bootstrap: [AppComponent]
 })

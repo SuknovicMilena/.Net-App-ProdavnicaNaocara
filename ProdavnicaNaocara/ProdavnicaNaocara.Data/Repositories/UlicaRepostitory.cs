@@ -25,5 +25,16 @@ namespace ProdavnicaNaocara.Data.Repositories
             }).ToList();
             return ulice;
         }
+        public List<UlicaModel> GetAllUlicaPoMestima(int mestoId)
+        {
+            var ulice = dbSet.Where(u => u.MestoId == mestoId).Select(u => new UlicaModel
+            {
+                Id = u.Id,
+                Naziv = u.Naziv,
+                MestoId = u.MestoId,
+                NazivMesta = u.Mesto.Naziv
+            }).ToList();
+            return ulice;
+        }
     }
 }

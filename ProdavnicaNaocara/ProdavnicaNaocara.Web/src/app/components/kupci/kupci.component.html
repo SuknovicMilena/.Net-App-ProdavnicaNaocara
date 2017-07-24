@@ -1,0 +1,35 @@
+<div class="page-header">
+  <h1>Kupci</h1>
+</div>
+
+<div class="row">
+  <button class="btn btn-info" (click)="dodaj()">Dodaj kupca</button>
+
+  <div class="col-md-12">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Kupac Id</th>
+          <th>Naziv</th>
+          <th>Broj telefona</th>
+          <th>Adresa Id</th>
+          <th>Adresa naziv</th>
+          <th>Akcije</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let kupac of kupci">
+          <td [innerHtml]="kupac.id"></td>
+          <td [innerHtml]="kupac.naziv"></td>
+          <td [innerHtml]="kupac.brojTelefona"></td>
+          <td [innerHtml]="kupac.adresaId"></td>
+          <td [innerHtml]="kupac.adresaNaziv"></td>
+          <td>
+            <button class="btn btn-warning" (click)="izmeni(kupac)">Izmeni kupca</button>
+            <button class="btn btn-danger" (click)="obrisi(kupac)">Obrisi kupca</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -28,6 +28,13 @@ namespace ProdavnicaNaocara.Api.Controllers
             return Ok(ulice);
 
         }
+        [HttpGet("ulicePoMestima/{mestoId}")]
+        public IActionResult GetAllUlicePoMestima(int mestoId)
+        {
+            var ulice = UlicaRepostitory.GetAllUlicaPoMestima(mestoId);
+            return Ok(ulice);
+
+        }
         [HttpGet("{Id}")]
         public IActionResult GetAllUliceById(int Id)
         {

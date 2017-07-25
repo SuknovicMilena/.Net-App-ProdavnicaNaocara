@@ -9,8 +9,8 @@ using ProdavnicaNaocara.Common.Enums;
 namespace ProdavnicaNaocara.Data.Migrations
 {
     [DbContext(typeof(ProdavnicaNaocaraDbContext))]
-    [Migration("20170712201336_IzmenaStavkeOtpremnice")]
-    partial class IzmenaStavkeOtpremnice
+    [Migration("20170725085330_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -164,12 +164,7 @@ namespace ProdavnicaNaocara.Data.Migrations
 
                     b.Property<string>("Napomena");
 
-                    b.Property<int>("ZahtevId");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ZahtevId")
-                        .IsUnique();
 
                     b.ToTable("Ponude");
                 });
@@ -233,8 +228,6 @@ namespace ProdavnicaNaocara.Data.Migrations
 
                     b.Property<int>("FakturaId");
 
-                    b.Property<double>("Cena");
-
                     b.Property<int>("Kolicina");
 
                     b.Property<int>("ProizvodId");
@@ -279,8 +272,6 @@ namespace ProdavnicaNaocara.Data.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("NarudzbenicaKupcaId");
-
-                    b.Property<double>("Cena");
 
                     b.Property<int>("Kolicina");
 
@@ -477,14 +468,6 @@ namespace ProdavnicaNaocara.Data.Migrations
                     b.HasOne("ProdavnicaNaocara.Data.Entities.Zaposleni", "Zaposlen")
                         .WithMany("OtpremnicaZaposleni")
                         .HasForeignKey("ZaposleniId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("ProdavnicaNaocara.Data.Entities.Ponuda", b =>
-                {
-                    b.HasOne("ProdavnicaNaocara.Data.Entities.ZahtevZaPonudom", "ZahtevZaPonudom")
-                        .WithOne("PonudaKupcu")
-                        .HasForeignKey("ProdavnicaNaocara.Data.Entities.Ponuda", "ZahtevId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

@@ -14,13 +14,6 @@ namespace ProdavnicaNaocara.Data.Entities
 
         public String Napomena { get; set; }
 
-        [Required]
-        public int ZahtevId { get; set; }
-
-        [ForeignKey("ZahtevId")]
-        [InverseProperty("PonudaKupcu")]
-        public ZahtevZaPonudom ZahtevZaPonudom { get; set; }
-
         [InverseProperty("Ponuda")]
         public List<Narudzbenica> Ponude { get; set; }
 

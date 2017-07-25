@@ -26,8 +26,7 @@ namespace ProdavnicaNaocara.Data.Entities
         [InverseProperty("ZahteviZaPonudom")]
         public Kupac Kupac { get; set; }
 
-        [InverseProperty("ZahtevZaPonudom")]
-        public Ponuda PonudaKupcu { get; set; }
+
 
 
 

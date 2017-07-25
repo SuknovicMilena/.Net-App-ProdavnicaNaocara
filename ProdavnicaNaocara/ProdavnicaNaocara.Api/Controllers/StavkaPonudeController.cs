@@ -13,11 +13,13 @@ namespace ProdavnicaNaocara.Api.Controllers
     {
         private StavkaPonudeRepository stavkaPonudeRepositry;
         private ProizvodiRepository proizvodiRepository;
+        private PonudaRepository ponudaRepository;
 
-        public StavkaPonudeController(StavkaPonudeRepository stavkaPonudeRepositry, ProizvodiRepository proizvodiRepository)
+        public StavkaPonudeController(StavkaPonudeRepository stavkaPonudeRepositry, ProizvodiRepository proizvodiRepository, PonudaRepository ponudaRepository)
         {
             this.stavkaPonudeRepositry = stavkaPonudeRepositry;
             this.proizvodiRepository = proizvodiRepository;
+            this.ponudaRepository = ponudaRepository;
 
         }
 
@@ -34,8 +36,8 @@ namespace ProdavnicaNaocara.Api.Controllers
             return Ok(stavka);
         }
 
-        [HttpPost]
-        public IActionResult Add([FromBody]StavkaPonude model)
+        [HttpPost("{ponudaId}")]
+        public IActionResult Add(int ponudaId, [FromBody]StavkaPonude model)
         {
             var proizvod = proizvodiRepository.GetById(model.ProizvodId);
             if (proizvod == null)
@@ -43,10 +45,17 @@ namespace ProdavnicaNaocara.Api.Controllers
                 return NotFound("Ne postoji taj proizvod");
 
             }
+            var ponuda = ponudaRepository.GetById(ponudaId);
+
+            if (ponuda == null)
+            {
+                return NotFound("Ne postoji ta ponuda");
+
+            }
 
             var stavka = new StavkaPonude
             {
-                PonudaId = model.PonudaId,
+                PonudaId = ponudaId,
                 ProizvodId = model.ProizvodId,
                 Kolicnina = model.Kolicnina,
                 StatusPonude = model.StatusPonude

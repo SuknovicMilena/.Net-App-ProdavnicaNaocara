@@ -14,7 +14,7 @@ namespace ProdavnicaNaocara.Data.Repositories
         {
         }
 
-        public List<StavkaPonudeModel> GetAllByStavkaPonudeMode()
+        public List<StavkaPonudeModel> GetAllByStavkaPonudeModel()
         {
             var stavkePonude = dbSet.Select(sp => new StavkaPonudeModel
             {
@@ -28,17 +28,18 @@ namespace ProdavnicaNaocara.Data.Repositories
             }).ToList();
             return stavkePonude;
         }
-        public StavkaPonudeModel GetAllByStavkaPonudeMode(int RbStavkeId, int PonudaId)
+        public StavkaPonudeModel GetStavkaById(int RbStavkeId)
         {
             var stavkaPonude = dbSet.Select(sp => new StavkaPonudeModel
             {
-
+                RbStavkeId = sp.RbStavkeId,
+                PonudaId = sp.PonudaId,
                 Kolicnina = sp.Kolicnina,
                 StatusPonude = sp.StatusPonude,
                 ProizvodId = sp.ProizvodId,
                 ProizvodNaziv = sp.ProizvodPonuda.Ime
 
-            }).FirstOrDefault(sp => sp.RbStavkeId == RbStavkeId && sp.PonudaId == PonudaId);
+            }).FirstOrDefault(sp => sp.RbStavkeId == RbStavkeId);
             return stavkaPonude;
         }
     }

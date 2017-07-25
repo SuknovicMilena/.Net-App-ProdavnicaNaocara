@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProdavnicaNaocara.Common.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -21,7 +22,7 @@ namespace ProdavnicaNaocara.Data.Entities
 
         public int Kolicnina { get; set; }
 
-        public int StatusPonude { get; set; }
+        public TipPonude StatusPonude { get; set; }
 
         [ForeignKey("PonudaId")]
         [InverseProperty("StavkePonude")]

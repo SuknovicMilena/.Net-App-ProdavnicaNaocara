@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProdavnicaNaocara.Common.Enums;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -12,7 +13,7 @@ namespace ProdavnicaNaocara.Common.Models
         public int ProizvodId { get; set; }
         public string ProizvodNaziv { get; set; }
         public int Kolicnina { get; set; }
-        public int StatusPonude { get; set; }
+        public TipPonude StatusPonude { get; set; }
 
 
     }

@@ -1,0 +1,32 @@
+<div class="page-header">
+  <h1>Ponude</h1>
+</div>
+
+<div class="row">
+  <button class="btn btn-info" (click)="dodaj()">Dodaj ponudu</button>
+
+  <div class="col-md-12">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Ponuda Id</th>
+          <th>Datum</th>
+          <th>Napomena</th>
+          <th>Akcije</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ponuda of ponude">
+          <td [innerHtml]="ponuda.id"></td>
+          <td [innerHtml]="ponuda.datum"></td>
+          <td [innerHtml]="ponuda.napomena"></td>
+          <td>
+            <button class="btn btn-info" (click)="idiNaStavkePonude(ponuda)">Stavke ponude</button>
+            <button class="btn btn-warning" (click)="izmeni(ponuda)">Izmeni ponudu</button>
+            <button class="btn btn-danger" (click)="obrisi(ponuda)">Obrisi ponudu</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

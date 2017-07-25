@@ -19,9 +19,16 @@ interface IMesto {
   naziv: string;
 }
 interface IUlica {
+
   ulicaId: number;
   mestoId: number;
   mestoNaziv: string;
   naziv: string;
+
+}
+interface IPonuda {
+  id: number;
+  datum: Date;
+  napomena: string;
 
 }

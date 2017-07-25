@@ -1,3 +1,6 @@
+import { PonudaComponent } from './components/ponuda/ponuda.component';
+import { PonudeComponent } from './components/ponude/ponude.component';
+import { PonudaService } from './services/ponuda.service';
 import { KupacComponent } from './components/kupac/kupac.component';
 import { MestoService } from './services/mesto.service';
 import { KupacService } from './services/kupac.service';
@@ -24,11 +27,14 @@ import { HeaderComponent } from './components/header/header.component';
     HeaderComponent,
     FooterComponent,
     KupciComponent,
-    KupacComponent
+    KupacComponent,
+    PonudeComponent,
+    PonudaComponent
   ],
   providers: [
     KupacService,
-    MestoService
+    MestoService,
+    PonudaService
   ],
   bootstrap: [AppComponent]
 })

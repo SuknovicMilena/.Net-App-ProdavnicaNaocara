@@ -1,3 +1,5 @@
+import { StavkeService } from './services/stavke.service';
+import { StavkeComponent } from './components/stavkePonude/stavke.component';
 import { PonudaComponent } from './components/ponuda/ponuda.component';
 import { PonudeComponent } from './components/ponude/ponude.component';
 import { PonudaService } from './services/ponuda.service';
@@ -29,12 +31,14 @@ import { HeaderComponent } from './components/header/header.component';
     KupciComponent,
     KupacComponent,
     PonudeComponent,
-    PonudaComponent
+    PonudaComponent,
+    StavkeComponent
   ],
   providers: [
     KupacService,
     MestoService,
-    PonudaService
+    PonudaService,
+    StavkeService
   ],
   bootstrap: [AppComponent]
 })

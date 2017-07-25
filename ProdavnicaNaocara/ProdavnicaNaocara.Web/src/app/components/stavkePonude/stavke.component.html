@@ -1,0 +1,94 @@
+<div class="page-header">
+  <h3>Ponuda</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Ponuda Id</th>
+          <th>Datum</th>
+          <th>Napomena</th>
+        </tr>
+      </thead>
+      <tbody>
+        <td [innerHtml]="ponuda.id"></td>
+        <td [innerHtml]="ponuda.datum"></td>
+        <td [innerHtml]="ponuda.napomena"></td>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col-md-12">
+    <h3>Stavke za izabranu ponudu</h3>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Ponuda Id</th>
+          <th>Redni broj stavke</th>
+          <th>Kolicina</th>
+          <th>Proizvod Id</th>
+          <th>Proizvod naziv</th>
+          <th>Status ponude</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let stavka of stavke">
+
+          <td [innerHtml]="stavka.ponudaId"></td>
+          <td [innerHtml]="stavka.rbStavkeId"></td>
+          <td [innerHtml]="stavka.kolicnina"></td>
+          <td [innerHtml]="stavka.proizvodId"></td>
+          <td [innerHtml]="stavka.proizvodNaziv"></td>
+          <td [innerHtml]="stavka.statusPonude"></td>
+          <td>
+            <button class="btn btn-warning" (click)="izmeni(stavka)">Izmeni stavku</button>
+            <button class="btn btn-danger" (click)="obrisi(stavka)">Obrisi stavku</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="row">
+
+    <div class="col-md-12">
+
+      <form class="form-horizontal">
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="kolicina">Kolicina</label>
+          <div class="col-sm-10">
+            <input class="form-control" type="text" placeholder="Unesite kolicinu" [(ngModel)]="stavka.kolicina  " id="kolicina" name="kolicina" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="proizvodId">Proizvod</label>
+          <div class="col-sm-10">
+            <select class="form-control" [(ngModel)]="stavka.proizvodId" id="proizvodId" name="proizvodId">
+            <option *ngFor="let proizvod of proizvodi" [value]="proizvod.id" [innerHtml]="proizvod.ime"></option>
+          </select>
+          </div>
+        </div>
+
+
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="statusPonude">Status ponude</label>
+          <div class="col-sm-10">
+            <input class="form-control" type="text" placeholder="Upisite status" [(ngModel)]="stavka.statusPonude" id="statusPonude" name="statusPonude" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button class="btn btn-info" (click)="odustani()">Odustani</button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+</div>

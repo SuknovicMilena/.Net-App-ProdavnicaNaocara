@@ -1,3 +1,4 @@
+import { StavkeComponent } from './components/stavkePonude/stavke.component';
 import { PonudaComponent } from './components/ponuda/ponuda.component';
 import { PonudeComponent } from './components/ponude/ponude.component';
 import { KupacComponent } from './components/kupac/kupac.component';
@@ -11,7 +12,8 @@ const routes: Routes = [
   { path: 'kupci/dodavanje', component: KupacComponent },
   { path: 'ponude', component: PonudeComponent },
   { path: 'ponude/dodavanje', component: PonudaComponent },
-  { path: 'ponude/izmena/:id', component: PonudaComponent }
+  { path: 'ponude/izmena/:id', component: PonudaComponent },
+  { path: 'ponuda/stavkePonude/:id', component: StavkeComponent }
 ];
 
 @NgModule({

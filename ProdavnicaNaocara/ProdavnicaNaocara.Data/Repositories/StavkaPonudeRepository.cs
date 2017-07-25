@@ -28,6 +28,22 @@ namespace ProdavnicaNaocara.Data.Repositories
             }).ToList();
             return stavkePonude;
         }
+
+        public List<StavkaPonudeModel> GetAllByStavkaPonudePoPonudi(int ponudaId)
+        {
+            var stavkePonude = dbSet.Where(p => p.PonudaId == ponudaId).Select(sp => new StavkaPonudeModel
+            {
+                RbStavkeId = sp.RbStavkeId,
+                PonudaId = sp.PonudaId,
+                Kolicnina = sp.Kolicnina,
+                StatusPonude = sp.StatusPonude,
+                ProizvodId = sp.ProizvodId,
+                ProizvodNaziv = sp.ProizvodPonuda.Ime
+
+            }).ToList();
+            return stavkePonude;
+        }
+
         public StavkaPonudeModel GetStavkaById(int RbStavkeId)
         {
             var stavkaPonude = dbSet.Select(sp => new StavkaPonudeModel

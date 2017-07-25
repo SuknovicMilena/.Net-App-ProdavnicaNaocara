@@ -36,6 +36,20 @@ namespace ProdavnicaNaocara.Api.Controllers
             return Ok(stavka);
         }
 
+        [HttpGet("ponuda/{ponudaId}")]
+        public IActionResult GetAllStavkeByPonudaId(int ponudaId)
+        {
+            var stavke = stavkaPonudeRepositry.GetAllByStavkaPonudePoPonudi(ponudaId);
+            return Ok(stavke);
+        }
+
+        [HttpGet("proizvodi")]
+        public IActionResult GetAllProizvodi()
+        {
+            var proizvodi = proizvodiRepository.GetAllProizvodModels();
+            return Ok(proizvodi);
+        }
+
         [HttpPost("{ponudaId}")]
         public IActionResult Add(int ponudaId, [FromBody]StavkaPonude model)
         {

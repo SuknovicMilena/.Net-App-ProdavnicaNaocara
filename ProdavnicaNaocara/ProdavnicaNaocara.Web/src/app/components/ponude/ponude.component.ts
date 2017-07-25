@@ -34,4 +34,8 @@ export class PonudeComponent implements OnInit {
     }
   }
 
+  idiNaStavkePonude(ponuda: IPonuda) {
+    this.router.navigate(['ponuda/stavkePonude', ponuda.id]);
+  }
+
 }

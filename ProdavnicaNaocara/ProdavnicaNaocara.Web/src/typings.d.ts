@@ -32,3 +32,17 @@ interface IPonuda {
   napomena: string;
 
 }
+
+interface IStavkaPonude {
+  rb: number;
+  ponudaId: number;
+  kolicina: number;
+  proizvodId: number;
+  proizvodNaziv: string;
+  statusPonude: number;
+
+}
+interface IProizvod {
+  id: number;
+  ime: string;
+}

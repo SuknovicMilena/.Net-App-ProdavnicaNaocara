@@ -21,18 +21,6 @@ export class PonudeComponent implements OnInit {
   dodaj() {
     this.router.navigate(['ponude/dodavanje']);
   }
-  izmeni(ponuda: IPonuda) {
-    this.router.navigate(['ponude/izmena', ponuda.id]);
-  }
-
-  obrisi(ponuda: IPonuda) {
-    if (confirm('Da li ste sigurni da zelite da izbrisete ponudu?')) {
-      this.ponudaService.delete(ponuda.id).subscribe(() => {
-        alert('Ponuda obrisana');
-        this.ponude = this.ponude.filter((p: IPonuda) => p.id != ponuda.id);
-      });
-    }
-  }
 
   idiNaStavkePonude(ponuda: IPonuda) {
     this.router.navigate(['ponuda/stavkePonude', ponuda.id]);

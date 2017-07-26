@@ -13,5 +13,9 @@ namespace ProdavnicaNaocara.Common.Models
         public int UlicaId { get; set; }
 
         public string NazivUlice { get; set; }
+
+
+
+
     }
 }

@@ -36,4 +36,14 @@ export class MestoService {
       })
       .map(response => response.json() as IUlica[]);
   }
+  add(adresa: IAdresa): Observable<IAdresa> {
+    return this.http
+      .post(`http://localhost:34028/adrese`, adresa)
+      .catch((response: Response) => {
+        alert(response.text());
+        return Observable.throw(response);
+      })
+      .map(response => response.json() as IAdresa);
+  }
+
 }

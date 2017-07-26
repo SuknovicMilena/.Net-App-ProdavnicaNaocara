@@ -14,6 +14,8 @@ namespace ProdavnicaNaocara.Data.Repositories
         {
         }
 
+
+
         public List<MestoModel> GetAllMesta()
         {
             var mesta = dbSet.Select(m => new MestoModel
@@ -23,6 +25,16 @@ namespace ProdavnicaNaocara.Data.Repositories
                 Naziv = m.Naziv
             }).ToList();
             return mesta;
+        }
+        public MestoModel GetMestoById(int Id)
+        {
+            var mesto = dbSet.Select(m => new MestoModel
+            {
+
+                Id = m.Id,
+                Naziv = m.Naziv
+            }).FirstOrDefault(m => m.Id == Id);
+            return mesto;
         }
     }
 }

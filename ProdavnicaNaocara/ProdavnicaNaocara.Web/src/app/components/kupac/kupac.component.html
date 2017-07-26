@@ -23,9 +23,9 @@
 
       <div class="form-group">
         <label class="col-sm-2 control-label" for="mestoId">Mesto</label>
-        <div class="col-sm-10" >
-          <select class="form-control" [(ngModel)]="kupac.mestoId" id="mestoId" name="mestoId" (click)="vratiSveUliceZaMesto(mestoId)">
-          <option *ngFor="let mesto of mesta" [value]="mesto.mestoId" [innerHtml]="mesto.naziv"></option>
+        <div class="col-sm-10">
+          <select class="form-control" [(ngModel)]="kupac.mestoId" id="mestoId" name="mestoId" (ngModelChange)="vratiSveUliceZaMesto(kupac.mestoId)">
+            <option *ngFor="let mesto of mesta" [value]="mesto.id" [innerHtml]="mesto.naziv"></option>
           </select>
         </div>
       </div>
@@ -45,6 +45,7 @@
         <label class="col-sm-2 control-label" for="broj">Broj</label>
         <div class="col-sm-10">
           <input class="form-control" type="text" placeholder="Upisite broj" [(ngModel)]="kupac.broj" id="broj" name="broj" />
+
         </div>
       </div>
 

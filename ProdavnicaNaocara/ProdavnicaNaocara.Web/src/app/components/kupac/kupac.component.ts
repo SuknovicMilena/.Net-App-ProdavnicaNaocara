@@ -12,6 +12,8 @@ import { Component, OnInit } from '@angular/core';
 export class KupacComponent {
 
   kupac: IKupac = {} as IKupac;
+  ulica: IUlica = {} as IUlica;
+  adresa: IAdresa = {} as IAdresa;
   mesta: IMesto[];
   ulice: IUlica[];
   mestoId: number;
@@ -30,11 +32,27 @@ export class KupacComponent {
       this.mesta = mesta;
     });
   }
+
   vratiSveUliceZaMesto(mestoId: number) {
     this.mestoService.getUlicePoMestima(mestoId).subscribe((ulice: IUlica[]) => {
       this.ulice = ulice;
     });
   }
+
+  dodaj() {
+
+    this.kupacService.add(this.kupac).subscribe((k: IKupac) => {
+      alert('Kupac dodat!');
+      this.odustani();
+    });
+  }
+  izmeni() {
+    this.kupacService.update(this.kupac).subscribe(() => {
+      alert('Kupac izmenjen!');
+      this.odustani();
+    });
+  }
+
   odustani() {
     this.router.navigate(['kupci']);
   }

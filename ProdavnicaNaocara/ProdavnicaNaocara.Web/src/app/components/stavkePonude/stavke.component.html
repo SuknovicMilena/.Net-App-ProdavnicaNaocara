@@ -16,7 +16,12 @@
         <td [innerHtml]="ponuda.id"></td>
         <td [innerHtml]="ponuda.datum"></td>
         <td [innerHtml]="ponuda.napomena"></td>
+        <td>
+          <button class="btn btn-warning" (click)="izmeni(ponuda)">Izmeni ponudu</button>
+          <button class="btn btn-danger" (click)="obrisi(ponuda)">Obrisi ponudu</button>
+        </td>
       </tbody>
+
     </table>
   </div>
 
@@ -83,6 +88,7 @@
 
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
+            <button class="btn btn-info" (click)="dodaj()">Dodaj ponudu sa stavkama</button>
             <button class="btn btn-info" (click)="odustani()">Odustani</button>
           </div>
         </div>

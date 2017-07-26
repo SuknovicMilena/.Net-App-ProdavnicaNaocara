@@ -14,6 +14,8 @@ export class StavkeComponent implements OnInit {
 
   stavke: IStavkaPonude[];
 
+  ponude: IPonuda[];
+
   proizvodi: IProizvod[];
   stavka: IStavkaPonude = {} as IStavkaPonude;
 
@@ -33,6 +35,20 @@ export class StavkeComponent implements OnInit {
       });
     }
   }
+
+  izmeni(ponuda: IPonuda) {
+    this.router.navigate(['ponude/izmena', ponuda.id]);
+  }
+
+  obrisi(ponuda: IPonuda) {
+    if (confirm('Da li ste sigurni da zelite da izbrisete ponudu?')) {
+      this.ponudaService.delete(ponuda.id).subscribe(() => {
+        alert('Ponuda obrisana');
+        this.ponude = this.ponude.filter((p: IPonuda) => p.id != ponuda.id);
+      });
+    }
+  }
+
   odustani() {
     this.router.navigate(['ponude']);
   }

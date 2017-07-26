@@ -1,1 +1,4 @@
-/*test {*/
+body {
+    background: url('/assets/img/background.jpg') no-repeat;
+    background-size: cover;
+}

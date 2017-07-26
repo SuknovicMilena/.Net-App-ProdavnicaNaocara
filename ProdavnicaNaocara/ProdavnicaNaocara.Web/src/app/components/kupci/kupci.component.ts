@@ -22,6 +22,11 @@ export class KupciComponent implements OnInit {
   dodaj() {
     this.router.navigate(['kupci/dodavanje']);
   }
+
+  izmeni(kupac: IKupac) {
+    this.router.navigate(['kupci/izmena', kupac.id]);
+  }
+
   obrisi(kupac: IKupac) {
     if (confirm('Da li ste sigurni da zelite da obrisete ovog kupca?')) {
       this.kupacService.delete(kupac.id).subscribe(() => {

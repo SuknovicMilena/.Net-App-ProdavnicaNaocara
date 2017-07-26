@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'kupci', pathMatch: 'full' },
   { path: 'kupci', component: KupciComponent },
   { path: 'kupci/dodavanje', component: KupacComponent },
+  { path: 'kupci/izmena/:id', component: KupacComponent },
   { path: 'ponude', component: PonudeComponent },
   { path: 'ponude/dodavanje', component: PonudaComponent },
   { path: 'ponude/izmena/:id', component: PonudaComponent },

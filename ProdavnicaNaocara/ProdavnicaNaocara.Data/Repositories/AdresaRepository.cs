@@ -27,5 +27,6 @@ namespace ProdavnicaNaocara.Data.Repositories
             }).ToList();
             return adrese;
         }
+
     }
 }

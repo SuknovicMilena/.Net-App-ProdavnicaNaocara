@@ -26,6 +26,13 @@ interface IUlica {
   naziv: string;
 
 }
+interface IAdresa {
+
+  id: number;
+  broj: number;
+  ulicaId: number;
+
+}
 interface IPonuda {
   id: number;
   datum: Date;

@@ -15,12 +15,16 @@ namespace ProdavnicaNaocara.Api.Controllers
 
         private KupacRepository kupacRepository;
         private AdresaRepository adresaRepository;
+        private UlicaRepostitory ulicaRepostitory;
+        private MestoRepository mestoRepository;
 
-        public KupacController(KupacRepository kupacRepository, AdresaRepository adresaRepository)
+
+        public KupacController(KupacRepository kupacRepository, AdresaRepository adresaRepository, UlicaRepostitory ulicaRepostitory, MestoRepository mestoRepository)
         {
             this.kupacRepository = kupacRepository;
             this.adresaRepository = adresaRepository;
-
+            this.mestoRepository = mestoRepository;
+            this.ulicaRepostitory = ulicaRepostitory;
 
         }
         [HttpGet]
@@ -38,11 +42,13 @@ namespace ProdavnicaNaocara.Api.Controllers
         [HttpPost]
         public IActionResult Add([FromBody]KupacModel kupacModel)
         {
+
             var adresa = adresaRepository.GetById(kupacModel.Id);
             if (adresa == null)
             {
-                return NotFound("Ne postoji ta adresa, probajte drugu");
+                return NotFound("ne postoji ta adresa, probajte drugu");
             }
+
             var kupac = new Kupac
             {
                 Naziv = kupacModel.Naziv,

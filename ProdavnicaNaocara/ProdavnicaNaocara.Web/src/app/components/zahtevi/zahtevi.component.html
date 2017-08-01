@@ -1,0 +1,24 @@
+<div class="page-header">
+  <h1>Zahtevi za kupca {{kupac.naziv}}</h1>
+</div>
+
+<div class="row">
+
+  <div class="col-md-12">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Naziv zahteva</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let zahtev of zahtevi">
+          <td [innerHtml]="zahtev.katalogNaziv"></td>
+          <td>
+            <button  class="btn btn-warning" (click)="idiNaPonudu(zahtev)">Ponuda</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -22,7 +22,7 @@ namespace ProdavnicaNaocara.Data.Entities
 
         public int Kolicnina { get; set; }
 
-        public TipPonude StatusPonude { get; set; }
+        public string StatusPonude { get; set; }
 
         [ForeignKey("PonudaId")]
         [InverseProperty("StavkePonude")]

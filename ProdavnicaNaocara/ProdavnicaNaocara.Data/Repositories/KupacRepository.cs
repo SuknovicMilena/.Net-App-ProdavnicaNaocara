@@ -23,13 +23,15 @@ namespace ProdavnicaNaocara.Data.Repositories
                 Naziv = k.Naziv,
                 BrojTelefona = k.BrojTelefona,
                 AdresaId = k.AdresaId,
-                AdresaNaziv = k.Adresa.Ulica.Naziv + "" + k.Adresa.Broj
+                AdresaNaziv = k.Adresa.Ulica.Naziv + "" + k.Adresa.Broj,
+
 
 
 
             }).ToList();
             return kupci;
         }
+
         public KupacModel GetKupacModelById(int id)
         {
             var kupac = dbSet.Select(k => new KupacModel
@@ -45,5 +47,6 @@ namespace ProdavnicaNaocara.Data.Repositories
             }).FirstOrDefault(k => k.Id == id);
             return kupac;
         }
+
     }
 }

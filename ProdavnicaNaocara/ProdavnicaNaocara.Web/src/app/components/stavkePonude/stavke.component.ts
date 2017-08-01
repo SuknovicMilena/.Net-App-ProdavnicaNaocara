@@ -49,6 +49,15 @@ export class StavkeComponent implements OnInit {
     }
   }
 
+  obrisiStavku(stavka: IStavkaPonude) {
+    if (confirm('Da li ste sigurni da zelite da izbrisete izabranu stavku?')) {
+      this.stavkeService.delete(stavka.rbStavkeId, stavka.ponudaId).subscribe(() => {
+        alert('Stavka obrisana');
+        this.stavke = this.stavke.filter((s: IStavkaPonude) => s.rbStavkeId != stavka.rbStavkeId);
+      });
+    }
+  }
+
   odustani() {
     this.router.navigate(['ponude']);
   }

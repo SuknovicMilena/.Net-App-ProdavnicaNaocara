@@ -15,7 +15,11 @@ namespace ProdavnicaNaocara.Common.Models
         public int AdresaId { get; set; }
 
         public string AdresaNaziv { get; set; }
+        public int UlicaId { get; set; }
 
+        public int Broj { get; set; }
+
+        public int ZahtevId { get; set; }
 
     }
 }

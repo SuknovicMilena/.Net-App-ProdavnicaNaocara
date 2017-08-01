@@ -163,7 +163,12 @@ namespace ProdavnicaNaocara.Data.Migrations
 
                     b.Property<string>("Napomena");
 
+                    b.Property<int?>("ZahtevId");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("ZahtevId")
+                        .IsUnique();
 
                     b.ToTable("Ponude");
                 });
@@ -322,7 +327,7 @@ namespace ProdavnicaNaocara.Data.Migrations
 
                     b.Property<int>("ProizvodId");
 
-                    b.Property<int>("StatusPonude");
+                    b.Property<string>("StatusPonude");
 
                     b.HasKey("RbStavkeId", "PonudaId")
                         .HasName("PK_StavkaPonude");
@@ -468,6 +473,13 @@ namespace ProdavnicaNaocara.Data.Migrations
                         .WithMany("OtpremnicaZaposleni")
                         .HasForeignKey("ZaposleniId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("ProdavnicaNaocara.Data.Entities.Ponuda", b =>
+                {
+                    b.HasOne("ProdavnicaNaocara.Data.Entities.ZahtevZaPonudom", "ZahtevZaPonudom")
+                        .WithOne("PonudaKupcu")
+                        .HasForeignKey("ProdavnicaNaocara.Data.Entities.Ponuda", "ZahtevId");
                 });
 
             modelBuilder.Entity("ProdavnicaNaocara.Data.Entities.Proizvod", b =>

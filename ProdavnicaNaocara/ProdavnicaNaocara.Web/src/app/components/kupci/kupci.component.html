@@ -25,6 +25,7 @@
           <td [innerHtml]="kupac.adresaId"></td>
           <td [innerHtml]="kupac.adresaNaziv"></td>
           <td>
+            <button class="btn btn-info" (click)="idiNaZahteve(kupac)">Zahtevi</button>
             <button class="btn btn-warning" (click)="izmeni(kupac)">Izmeni kupca</button>
             <button class="btn btn-danger" (click)="obrisi(kupac)">Obrisi kupca</button>
           </td>

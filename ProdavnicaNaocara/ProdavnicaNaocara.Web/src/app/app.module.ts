@@ -1,3 +1,4 @@
+import { ZahteviComponent } from './components/zahtevi/zahtevi.component';
 import { StavkeService } from './services/stavke.service';
 import { StavkeComponent } from './components/stavkePonude/stavke.component';
 import { PonudaComponent } from './components/ponuda/ponuda.component';
@@ -32,7 +33,8 @@ import { HeaderComponent } from './components/header/header.component';
     KupacComponent,
     PonudeComponent,
     PonudaComponent,
-    StavkeComponent
+    StavkeComponent,
+    ZahteviComponent
   ],
   providers: [
     KupacService,

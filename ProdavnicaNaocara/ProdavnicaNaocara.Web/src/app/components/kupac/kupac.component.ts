@@ -40,7 +40,6 @@ export class KupacComponent {
   }
 
   dodaj() {
-
     this.kupacService.add(this.kupac).subscribe((k: IKupac) => {
       alert('Kupac dodat!');
       this.odustani();

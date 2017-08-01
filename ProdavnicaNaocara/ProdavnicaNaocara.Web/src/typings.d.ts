@@ -9,18 +9,19 @@ interface IKupac {
   id: number;
   naziv: string;
   brojTelefona: string;
-  adresaId: string;
+  adresaId: number;
   adresaNaziv: string;
   mestoId: number;
+  ulicaId: number;
 }
 
 interface IMesto {
-  mestoId: number;
+  id: number;
   naziv: string;
 }
 interface IUlica {
 
-  ulicaId: number;
+  id: number;
   mestoId: number;
   mestoNaziv: string;
   naziv: string;
@@ -37,11 +38,17 @@ interface IPonuda {
   id: number;
   datum: Date;
   napomena: string;
-
+  zahtevId: number;
+  zahtevNaziv: string;
 }
-
+interface IZahtevZaPonudom {
+  id: number;
+  katalogNaziv: string;
+  kupacId: number;
+  kupacNaziv: string;
+}
 interface IStavkaPonude {
-  rb: number;
+  rbStavkeId: number;
   ponudaId: number;
   kolicina: number;
   proizvodId: number;

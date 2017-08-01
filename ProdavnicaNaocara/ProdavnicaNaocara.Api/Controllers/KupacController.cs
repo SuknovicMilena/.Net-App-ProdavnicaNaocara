@@ -17,15 +17,16 @@ namespace ProdavnicaNaocara.Api.Controllers
         private AdresaRepository adresaRepository;
         private UlicaRepostitory ulicaRepostitory;
         private MestoRepository mestoRepository;
+        private ZahtevZaPonudomRepository zahtevZaPonudomRepository;
 
 
-        public KupacController(KupacRepository kupacRepository, AdresaRepository adresaRepository, UlicaRepostitory ulicaRepostitory, MestoRepository mestoRepository)
+        public KupacController(KupacRepository kupacRepository, AdresaRepository adresaRepository, UlicaRepostitory ulicaRepostitory, MestoRepository mestoRepository, ZahtevZaPonudomRepository zahtevZaPonudomRepository)
         {
             this.kupacRepository = kupacRepository;
             this.adresaRepository = adresaRepository;
             this.mestoRepository = mestoRepository;
             this.ulicaRepostitory = ulicaRepostitory;
-
+            this.zahtevZaPonudomRepository = zahtevZaPonudomRepository;
         }
         [HttpGet]
         public IActionResult GetAll()
@@ -39,29 +40,40 @@ namespace ProdavnicaNaocara.Api.Controllers
             var kupci = kupacRepository.GetKupacModelById(Id);
             return Ok(kupci);
         }
+        [HttpGet("zahtevi/{kupacId}")]
+        public IActionResult GetZahteviZaKupca(int kupacId)
+        {
+            var zahtevi = zahtevZaPonudomRepository.GetAllZahteviZaKupca(kupacId);
+            return Ok(zahtevi);
+        }
+        [HttpGet("zahtev/{id}")]
+        public IActionResult GetZahtevById(int id)
+        {
+            var zahtev = zahtevZaPonudomRepository.GetAllZahtevById(id);
+            return Ok(zahtev);
+        }
         [HttpPost]
         public IActionResult Add([FromBody]KupacModel kupacModel)
         {
-
-            var adresa = adresaRepository.GetById(kupacModel.Id);
-            if (adresa == null)
+            var adresaZaBazu = new Adresa
             {
-                return NotFound("ne postoji ta adresa, probajte drugu");
-            }
+                UlicaId = kupacModel.UlicaId,
+                Broj = kupacModel.Broj
+            };
+            adresaRepository.Insert(adresaZaBazu);
+            adresaRepository.Save();
 
             var kupac = new Kupac
             {
                 Naziv = kupacModel.Naziv,
                 BrojTelefona = kupacModel.BrojTelefona,
-                AdresaId = kupacModel.AdresaId
-
-
+                AdresaId = adresaZaBazu.Id
             };
             kupacRepository.Insert(kupac);
             kupacRepository.Save();
-            return Ok();
-
+            return Ok(kupac);
         }
+
         [HttpPut("{Id}")]
         public IActionResult Update(int Id, [FromBody]KupacModel model)
         {

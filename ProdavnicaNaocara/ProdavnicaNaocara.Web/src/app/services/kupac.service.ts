@@ -26,7 +26,28 @@ export class KupacService {
       })
       .map(response => response.json() as IKupac);
   }
+  getZahtevById(id: number): Observable<IZahtevZaPonudom> {
+    return this.http
+      .get(`http://localhost:34028/kupci/zahtev/${id}`)
+      .catch((response: Response) => {
+        alert(response.text());
+        return Observable.throw(response);
+      })
+      .map(response => response.json() as IZahtevZaPonudom);
+  }
+  getZahtevi(id: number): Observable<IZahtevZaPonudom[]> {
+    return this.http
+      .get(`http://localhost:34028/kupci/zahtevi/${id}`)
+      .catch((response: Response) => {
+        alert(response.text());
+        return Observable.throw(response);
+      })
+      .map(response => response.json() as IZahtevZaPonudom[]);
+  }
   add(kupac: IKupac): Observable<IKupac> {
+    kupac.mestoId = +kupac.mestoId;
+    kupac.ulicaId = +kupac.ulicaId;
+
     return this.http
       .post(`http://localhost:34028/kupci`, kupac)
       .catch((response: Response) => {

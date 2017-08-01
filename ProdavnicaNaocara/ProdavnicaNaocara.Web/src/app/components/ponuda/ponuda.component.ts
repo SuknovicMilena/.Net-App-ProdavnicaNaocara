@@ -1,3 +1,4 @@
+import { KupacService } from './../../services/kupac.service';
 import { PonudaService } from '../../services/ponuda.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -10,8 +11,9 @@ import { Component, OnInit } from '@angular/core';
 export class PonudaComponent implements OnInit {
 
   ponuda: IPonuda = {} as IPonuda;
+  zahtev: IZahtevZaPonudom = {} as IZahtevZaPonudom;
 
-  constructor(private ponudaService: PonudaService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private kupacService: KupacService, private ponudaService: PonudaService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     let ponudaId = +this.route.snapshot.params['id'];
@@ -20,6 +22,15 @@ export class PonudaComponent implements OnInit {
         this.ponuda = ponuda;
       });
     }
+    else {
+      let zahtevId = +this.route.snapshot.params['zahtevId'];
+      this.kupacService.getZahtevById(zahtevId).subscribe((zahtev: IZahtevZaPonudom) => {
+        this.zahtev = zahtev;
+        this.ponuda.zahtevId = zahtevId;
+      });
+
+    }
+
   }
 
   dodaj() {

@@ -18,16 +18,38 @@ namespace ProdavnicaNaocara.Data.Repositories
             var zahtevi = dbSet.Select(z => new ZahtevZaPonudomModel
             {
                 Id = z.Id,
-                Datum = z.Datum,
-                KatalogId = z.KatalogId,
+                KatalogNaziv = z.Katalog.Naziv
+
+
+            }).ToList();
+            return zahtevi;
+        }
+        public List<ZahtevZaPonudomModel> GetAllZahteviZaKupca(int kupacId)
+        {
+            var zahtevi = dbSet.Where(z => z.KupacId == kupacId).Select(z => new ZahtevZaPonudomModel
+            {
+                Id = z.Id,
                 KatalogNaziv = z.Katalog.Naziv,
                 KupacId = z.KupacId,
                 KupacNaziv = z.Kupac.Naziv
 
 
-
             }).ToList();
             return zahtevi;
+        }
+
+        public ZahtevZaPonudomModel GetAllZahtevById(int zahtevId)
+        {
+            var zahtev= dbSet.Select(z => new ZahtevZaPonudomModel
+            {
+                Id = z.Id,
+                KatalogNaziv = z.Katalog.Naziv,
+                KupacId = z.KupacId,
+                KupacNaziv = z.Kupac.Naziv
+
+
+            }).FirstOrDefault(z => z.Id == zahtevId);
+            return zahtev;
         }
     }
 }

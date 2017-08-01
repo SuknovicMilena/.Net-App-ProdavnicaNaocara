@@ -8,9 +8,9 @@
 
     <form class="form-horizontal">
       <div class="form-group">
-        <label class="col-sm-2 control-label" for="imeKupca">Ime kupca</label>
+        <label class="col-sm-2 control-label" for="naziv">Ime kupca</label>
         <div class="col-sm-10">
-          <input class="form-control" type="text" placeholder="Upisite ime kupca" [(ngModel)]="kupac.imeKupca" id="imeKupca" name="imeKupca" />
+          <input class="form-control" type="text" placeholder="Upisite ime kupca" [(ngModel)]="kupac.naziv" id="naziv" name="naziv" />
         </div>
       </div>
 
@@ -34,7 +34,7 @@
         <label class="col-sm-2 control-label" for="ulicaId">Ulica</label>
         <div class="col-sm-10">
           <select class="form-control" [(ngModel)]="kupac.ulicaId" id="ulicaId" name="ulicaId">
-            <option *ngFor="let ulica of ulice" [value]="ulica.ulicaId" [innerHtml]="ulica.naziv"></option>
+            <option *ngFor="let ulica of ulice" [value]="ulica.id" [innerHtml]="ulica.naziv"></option>
           </select>
         </div>
       </div>
@@ -58,6 +58,7 @@
           <button class="btn btn-info" (click)="odustani()">Odustani</button>
         </div>
       </div>
+
 
     </form>
   </div>

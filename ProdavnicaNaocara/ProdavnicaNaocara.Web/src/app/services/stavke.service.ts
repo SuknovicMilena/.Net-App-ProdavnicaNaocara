@@ -26,4 +26,13 @@ export class StavkeService {
       })
       .map(response => response.json() as IProizvod[]);
   }
+  delete(RbStavkeId: number, ponudaId: number): Observable<void> {
+    return this.http
+      .delete(`http://localhost:34028/stavkePonude/${RbStavkeId}/ponuda/${ponudaId}`)
+      .catch((response: Response) => {
+        alert(response.text());
+        return Observable.throw(response);
+      })
+      .map(response => response.json());
+  }
 }

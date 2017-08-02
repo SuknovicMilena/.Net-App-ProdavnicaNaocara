@@ -28,15 +28,15 @@ namespace ProdavnicaNaocara.Api.Controllers
             return Ok(ponude);
         }
 
-        [HttpGet("{Id}")]
-        public IActionResult GetById(int Id)
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
         {
-            var ponuda = ponudaRepository.GetAllPonudaModelById(Id);
+            var ponuda = ponudaRepository.GetAllPonudaModelById(id);
             return Ok(ponuda);
         }
 
         [HttpGet("zahtevi")]
-        public IActionResult GetAlZahtevil()
+        public IActionResult GetAllZahtevi()
         {
             var zahtevi = zahtevZaPonudomRepository.GetAllZahtevZaPonudomModel();
             return Ok(zahtevi);
@@ -49,19 +49,70 @@ namespace ProdavnicaNaocara.Api.Controllers
             {
                 Datum = model.Datum,
                 Napomena = model.Napomena,
-                ZahtevId=model.ZahtevId
+                ZahtevId = model.ZahtevId
             };
             ponudaRepository.Insert(ponuda);
             ponudaRepository.Save();
             return Ok(ponuda);
         }
-        [HttpPut("{Id}")]
-        public IActionResult Update(int Id, [FromBody]PonudaModel model)
+
+        [HttpPost("{id}/stavke")]
+        public IActionResult UpdateStavke(int id, [FromBody]List<StavkaPonudeModel> stavke)
         {
-            var ponuda = ponudaRepository.GetById(Id);
+            var ponuda = ponudaRepository.Find(p => p.Id == id, include: "StavkePonude").FirstOrDefault();
+
             if (ponuda == null)
             {
-                NotFound("Ta ponuda ne postoji");
+                return NotFound("Ponuda nije pronadjena");
+            }
+
+            if (stavke.Any(s => s.PonudaId != id))
+            {
+                return BadRequest($"Stavke moraju da budu vezane za ponudu sa id-em: {id}");
+            }
+
+            var stavkeZaDelete = ponuda.StavkePonude.Where(s => !stavke.Any(sdb => sdb.ProizvodId == s.ProizvodId));
+
+            for (int i = stavkeZaDelete.Count() - 1; i >= 0; i--)
+            {
+                var stavkaZaDelete = stavkeZaDelete.ElementAt(i);
+                ponuda.StavkePonude.Remove(stavkaZaDelete);
+            }
+
+            var stavkeZaUpdate = stavke.Where(s => ponuda.StavkePonude.Any(sdb => sdb.ProizvodId == s.ProizvodId));
+            foreach (var stavka in stavkeZaUpdate)
+            {
+                var stavkaZaUpdate = ponuda.StavkePonude.First(s => s.ProizvodId == stavka.ProizvodId);
+                stavkaZaUpdate.Kolicnina = stavka.Kolicnina;
+                stavkaZaUpdate.StatusPonude = stavka.StatusPonude;
+            }
+
+            var stavkeZaInsert = stavke.Where(s => !ponuda.StavkePonude.Any(sdb => sdb.ProizvodId == s.ProizvodId));
+            foreach (var stavka in stavkeZaInsert)
+            {
+                var stavkaZaInsert = new StavkaPonude
+                {
+                    PonudaId = stavka.PonudaId,
+                    Kolicnina = stavka.Kolicnina,
+                    ProizvodId = stavka.ProizvodId,
+                    StatusPonude = stavka.StatusPonude
+                };
+
+                ponuda.StavkePonude.Add(stavkaZaInsert);
+            }
+
+            ponudaRepository.Save();
+
+            return NoContent();
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Update(int id, [FromBody]PonudaModel model)
+        {
+            var ponuda = ponudaRepository.GetById(id);
+            if (ponuda == null)
+            {
+                return NotFound("Ta ponuda ne postoji");
             }
 
             ponuda.Datum = model.Datum;
@@ -71,13 +122,14 @@ namespace ProdavnicaNaocara.Api.Controllers
 
             return new NoContentResult();
         }
-        [HttpDelete("{Id}")]
-        public IActionResult Delete(int Id)
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
         {
-            var ponuda = ponudaRepository.GetById(Id);
+            var ponuda = ponudaRepository.GetById(id);
             if (ponuda == null)
             {
-                NotFound("Taj proizvod ne postoji");
+                return NotFound("Taj proizvod ne postoji");
             }
 
             ponudaRepository.Delete(ponuda);

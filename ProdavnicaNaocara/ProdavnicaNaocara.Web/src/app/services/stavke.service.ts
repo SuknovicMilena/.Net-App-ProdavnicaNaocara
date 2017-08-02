@@ -17,6 +17,16 @@ export class StavkeService {
       .map(response => response.json() as IStavkaPonude[]);
   }
 
+  updateStavke(id: number, stavke: IStavkaPonude[]): Observable<void> {
+    return this.http
+      .post(`http://localhost:34028/ponude/${id}/stavke`, stavke)
+      .catch((response: Response) => {
+        alert(response.text());
+        return Observable.throw(response);
+      })
+      .map(response => response.json());
+  }
+
   getAllProizvod(): Observable<IProizvod[]> {
     return this.http
       .get(`http://localhost:34028/stavkePonude/proizvodi`)
@@ -25,14 +35,5 @@ export class StavkeService {
         return Observable.throw(response);
       })
       .map(response => response.json() as IProizvod[]);
-  }
-  delete(RbStavkeId: number, ponudaId: number): Observable<void> {
-    return this.http
-      .delete(`http://localhost:34028/stavkePonude/${RbStavkeId}/ponuda/${ponudaId}`)
-      .catch((response: Response) => {
-        alert(response.text());
-        return Observable.throw(response);
-      })
-      .map(response => response.json());
   }
 }

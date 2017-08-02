@@ -48,14 +48,14 @@ interface IZahtevZaPonudom {
   kupacNaziv: string;
 }
 interface IStavkaPonude {
-  rbStavkeId: number;
+  rbStavkeId?: number;
   ponudaId: number;
-  kolicina: number;
-  proizvodId: number;
-  proizvodNaziv: string;
-  statusPonude: number;
-
+  kolicnina: number;
+  proizvodId?: number;
+  proizvodNaziv?: string;
+  statusPonude: string;
 }
+
 interface IProizvod {
   id: number;
   ime: string;

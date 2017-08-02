@@ -45,6 +45,17 @@ namespace ProdavnicaNaocara.Api.Controllers
         [HttpPost]
         public IActionResult Add([FromBody]PonudaModel model)
         {
+            var zahtev = zahtevZaPonudomRepository.Find(z => z.Id == model.ZahtevId, include: "PonudaKupcu").FirstOrDefault();
+            if (zahtev == null)
+            {
+                return BadRequest("Zahtev ne postoji");
+            }
+
+            if (zahtev.PonudaKupcu != null)
+            {
+                return BadRequest("Zahtev vec ima ponudu.");
+            }
+
             var ponuda = new Ponuda
             {
                 Datum = model.Datum,
@@ -122,14 +133,13 @@ namespace ProdavnicaNaocara.Api.Controllers
 
             return new NoContentResult();
         }
-
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
             var ponuda = ponudaRepository.GetById(id);
             if (ponuda == null)
             {
-                return NotFound("Taj proizvod ne postoji");
+                return NotFound("Ta ponuda ne postoji");
             }
 
             ponudaRepository.Delete(ponuda);

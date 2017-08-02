@@ -11,13 +11,9 @@ import { Component, OnInit } from '@angular/core';
 export class StavkeComponent implements OnInit {
 
   ponuda: IPonuda = {} as IPonuda;
-
   stavke: IStavkaPonude[];
-
   ponude: IPonuda[];
-
   proizvodi: IProizvod[];
-  stavka: IStavkaPonude = {} as IStavkaPonude;
 
   constructor(private stavkeService: StavkeService, private ponudaService: PonudaService, private router: Router, private route: ActivatedRoute) { }
 
@@ -44,18 +40,30 @@ export class StavkeComponent implements OnInit {
     if (confirm('Da li ste sigurni da zelite da izbrisete ponudu?')) {
       this.ponudaService.delete(ponuda.id).subscribe(() => {
         alert('Ponuda obrisana');
+        this.router.navigate(['ponude']);
         this.ponude = this.ponude.filter((p: IPonuda) => p.id != ponuda.id);
       });
     }
   }
 
-  obrisiStavku(stavka: IStavkaPonude) {
+  dodajStavku() {
+    this.stavke.push({
+      ponudaId: this.ponuda.id,
+      kolicnina: 0,
+      statusPonude: '',
+    });
+  }
+
+  obrisiStavku(index: number) {
     if (confirm('Da li ste sigurni da zelite da izbrisete izabranu stavku?')) {
-      this.stavkeService.delete(stavka.rbStavkeId, stavka.ponudaId).subscribe(() => {
-        alert('Stavka obrisana');
-        this.stavke = this.stavke.filter((s: IStavkaPonude) => s.rbStavkeId != stavka.rbStavkeId);
-      });
+      this.stavke.splice(index, 1);
     }
+  }
+
+  updateStavke() {
+    this.stavkeService.updateStavke(this.ponuda.id, this.stavke).subscribe(() => {
+      alert('Stavke sacuvane');
+    });
   }
 
   odustani() {

@@ -9,13 +9,14 @@
       <thead>
         <tr>
           <th>Naziv zahteva</th>
+          <th>Ponuda za izabrani zahtev</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let zahtev of zahtevi">
           <td [innerHtml]="zahtev.katalogNaziv"></td>
           <td>
-            <button  class="btn btn-warning" (click)="idiNaPonudu(zahtev)">Ponuda</button>
+            <button class="btn btn-warning" (click)="idiNaPonudu(zahtev)">Ponuda</button>
           </td>
         </tr>
       </tbody>

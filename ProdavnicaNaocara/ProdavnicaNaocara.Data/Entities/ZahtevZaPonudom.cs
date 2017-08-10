@@ -11,8 +11,8 @@ namespace ProdavnicaNaocara.Data.Entities
         public int Id { get; set; }
         public DateTime Datum { get; set; }
 
-        [Required]
-        public int KatalogId { get; set; }
+
+        public int? KatalogId { get; set; }
 
         [Required]
         public int KupacId { get; set; }

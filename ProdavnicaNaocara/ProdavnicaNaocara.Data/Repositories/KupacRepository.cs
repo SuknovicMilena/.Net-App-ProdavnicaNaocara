@@ -23,7 +23,7 @@ namespace ProdavnicaNaocara.Data.Repositories
                 Naziv = k.Naziv,
                 BrojTelefona = k.BrojTelefona,
                 AdresaId = k.AdresaId,
-                AdresaNaziv = k.Adresa.Ulica.Naziv + "" + k.Adresa.Broj,
+                AdresaNaziv = k.Adresa.Ulica.Naziv + " " + k.Adresa.Broj,
 
 
 

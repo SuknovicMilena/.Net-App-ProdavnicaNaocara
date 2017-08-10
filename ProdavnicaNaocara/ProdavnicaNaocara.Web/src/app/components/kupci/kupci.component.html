@@ -10,10 +10,9 @@
       <thead>
         <tr>
           <th>Kupac Id</th>
-          <th>Naziv</th>
+          <th>Ime kupca</th>
           <th>Broj telefona</th>
-          <th>Adresa Id</th>
-          <th>Adresa naziv</th>
+          <th>Adresa</th>
           <th>Akcije</th>
         </tr>
       </thead>
@@ -22,7 +21,6 @@
           <td [innerHtml]="kupac.id"></td>
           <td [innerHtml]="kupac.naziv"></td>
           <td [innerHtml]="kupac.brojTelefona"></td>
-          <td [innerHtml]="kupac.adresaId"></td>
           <td [innerHtml]="kupac.adresaNaziv"></td>
           <td>
             <button class="btn btn-info" (click)="idiNaZahteve(kupac)">Zahtevi</button>

@@ -14,8 +14,6 @@ namespace ProdavnicaNaocara.Data.Entities
         [MinLength(3, ErrorMessage = "Ime mora da bude najmanje 3 karaktera dugo")]
         public string Ime { get; set; }
 
-        public string Adresa { get; set; }
-
         [InverseProperty("Proizvodjac")]
         public List<Proizvod> Proizvodi { get; set; }
     }

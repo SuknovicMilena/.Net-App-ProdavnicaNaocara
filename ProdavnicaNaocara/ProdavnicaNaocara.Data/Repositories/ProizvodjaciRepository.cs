@@ -20,7 +20,6 @@ namespace ProdavnicaNaocara.Data.Repositories
             {
                 Id = p.Id,
                 Ime = p.Ime,
-                Adresa = p.Adresa
             }).ToList();
 
             return proizvodjaci;
@@ -33,7 +32,6 @@ namespace ProdavnicaNaocara.Data.Repositories
             {
                 Id = p.Id,
                 Ime = p.Ime,
-                Adresa = p.Adresa
             }).FirstOrDefault(p => p.Id == id);
 
             return proizvodjac;

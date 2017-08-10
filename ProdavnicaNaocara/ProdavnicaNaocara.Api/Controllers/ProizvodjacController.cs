@@ -43,8 +43,7 @@ namespace ProdavnicaNaocara.Api.Controllers
         {
             Proizvodjac proizvodjacZaBazu = new Proizvodjac
             {
-                Ime = model.Ime,
-                Adresa = model.Adresa
+                Ime = model.Ime
             };
             proizvodjaciRepository.Insert(proizvodjacZaBazu);
             proizvodjaciRepository.Save();
@@ -65,7 +64,7 @@ namespace ProdavnicaNaocara.Api.Controllers
                 return NotFound($"Proizvodjac sa id-jem{proizvodjacIzBaze.Id} ne postoji u bazi");
             }
             proizvodjacIzBaze.Ime = model.Ime;
-            proizvodjacIzBaze.Adresa = model.Adresa;
+  
             proizvodjaciRepository.Save();
             return new NoContentResult();
         }

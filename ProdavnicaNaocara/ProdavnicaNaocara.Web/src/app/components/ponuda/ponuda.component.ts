@@ -36,7 +36,7 @@ export class PonudaComponent implements OnInit {
   dodaj() {
     this.ponudaService.add(this.ponuda).subscribe((ponuda: IPonuda) => {
       alert('Ponuda dodata!');
-      this.odustani();
+      this.router.navigate(['ponuda/stavkePonude', ponuda.id]);
     });
   }
   izmeni() {

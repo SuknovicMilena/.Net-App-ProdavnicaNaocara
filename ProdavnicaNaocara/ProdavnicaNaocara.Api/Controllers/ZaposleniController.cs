@@ -17,14 +17,15 @@ namespace ProdavnicaNaocara.Api.Controllers
         public ZaposleniController(ZaposleniRepository zaposleniRepository)
         {
             this.zaposleniRepository = zaposleniRepository;
-
         }
+
         [HttpGet]
         public IActionResult GetAll()
         {
             var zaposleni = zaposleniRepository.GetAll();
             return Ok(zaposleni);
         }
+
         [HttpPost]
         public IActionResult Insert([FromBody]ZaposleniModel model)
         {
@@ -36,6 +37,7 @@ namespace ProdavnicaNaocara.Api.Controllers
             zaposleniRepository.Save();
             return Ok();
         }
+
         [HttpPut("{Id}")]
         public IActionResult Update(int Id, [FromBody]ZaposleniModel model)
         {
@@ -48,6 +50,7 @@ namespace ProdavnicaNaocara.Api.Controllers
             zaposleniRepository.Save();
             return new NoContentResult();
         }
+
         [HttpDelete("{Id}")]
         public IActionResult Delete(int Id)
         {

@@ -19,8 +19,6 @@ namespace ProdavnicaNaocara.Data.Repositories
             {
                 Id = z.Id,
                 KatalogNaziv = z.Katalog.Naziv
-
-
             }).ToList();
             return zahtevi;
         }
@@ -32,22 +30,18 @@ namespace ProdavnicaNaocara.Data.Repositories
                 KatalogNaziv = z.Katalog.Naziv,
                 KupacId = z.KupacId,
                 KupacNaziv = z.Kupac.Naziv
-
-
             }).ToList();
             return zahtevi;
         }
 
         public ZahtevZaPonudomModel GetAllZahtevById(int zahtevId)
         {
-            var zahtev= dbSet.Select(z => new ZahtevZaPonudomModel
+            var zahtev = dbSet.Select(z => new ZahtevZaPonudomModel
             {
                 Id = z.Id,
                 KatalogNaziv = z.Katalog.Naziv,
                 KupacId = z.KupacId,
                 KupacNaziv = z.Kupac.Naziv
-
-
             }).FirstOrDefault(z => z.Id == zahtevId);
             return zahtev;
         }

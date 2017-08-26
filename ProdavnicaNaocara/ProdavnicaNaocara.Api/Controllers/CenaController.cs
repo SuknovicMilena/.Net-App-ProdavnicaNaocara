@@ -21,8 +21,6 @@ namespace ProdavnicaNaocara.Api.Controllers
             this.proizvodiRepository = proizvodiRepository;
         }
 
-
-
         [HttpGet("model")]
         public IActionResult GetByModel()
         {
@@ -37,6 +35,7 @@ namespace ProdavnicaNaocara.Api.Controllers
             var cena = cenaRepository.GetAll();
             return Ok(cena);
         }
+
         [HttpPost]
         public IActionResult Add([FromBody]CenaModel model)
         {
@@ -53,11 +52,7 @@ namespace ProdavnicaNaocara.Api.Controllers
                 ProizvodId = model.ProizvodId,
                 IznosCene = model.IznosCene,
                 IznosPopusta = model.IznosPopusta
-
-
-
             };
-
             cenaRepository.Insert(cenaZaBazu);
             cenaRepository.Save();
 
@@ -77,16 +72,9 @@ namespace ProdavnicaNaocara.Api.Controllers
 
                 return NotFound($"Crna sa id-em {cenaIzBaze} ne postoji!");
             }
-
-
-
             cenaIzBaze.IznosCene = model.IznosCene;
             cenaIzBaze.IznosPopusta = model.IznosPopusta;
-
-
-
             cenaRepository.Save();
-
             return new NoContentResult();
         }
 
@@ -105,7 +93,6 @@ namespace ProdavnicaNaocara.Api.Controllers
 
             cenaRepository.Delete(cenaIzBaze);
             cenaRepository.Save();
-
             return new NoContentResult();
         }
 

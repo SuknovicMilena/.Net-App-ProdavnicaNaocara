@@ -14,7 +14,6 @@ namespace ProdavnicaNaocara.Data
         public DbSet<Cena> Cene { get; set; }
         public DbSet<Katalog> Katalozi { get; set; }
         public DbSet<StavkaKataloga> StavkeKataloga { get; set; }
-
         public DbSet<Mesto> Mesta { get; set; }
         public DbSet<Ulica> Ulice { get; set; }
         public DbSet<Adresa> Adrese { get; set; }
@@ -23,10 +22,8 @@ namespace ProdavnicaNaocara.Data
         public DbSet<Ponuda> Ponude { get; set; }
         public DbSet<ZahtevZaPonudom> ZahteviZaPonudom { get; set; }
         public DbSet<Narudzbenica> Narudzbenice { get; set; }
-
         public DbSet<StavkaNarudzbenice> StavkeNarudzbenice { get; set; }
         public DbSet<Otpremnica> Otpremnice { get; set; }
-
         public DbSet<StavkaPonude> StavkePonude { get; set; }
         public DbSet<Faktura> Fakture { get; set; }
         public DbSet<StavkaFakture> StavkeFakture { get; set; }
@@ -57,36 +54,26 @@ namespace ProdavnicaNaocara.Data
             {
                 entity.HasKey(e => new { e.RbStavkeId, e.PonudaId })
                .HasName("PK_StavkaPonude");
-
-
             });
             modelBuilder.Entity<StavkaNarudzbenice>(entity =>
             {
                 entity.HasKey(e => new { e.RbStavkeId, e.NarudzbenicaKupcaId })
                .HasName("PK_StavkaNarudzbenice");
-
-
             });
             modelBuilder.Entity<StavkaFakture>(entity =>
             {
                 entity.HasKey(e => new { e.RbStavkeId, e.FakturaId })
                .HasName("PK_StavkaFakture");
-
-
             });
             modelBuilder.Entity<StavkaOtpremnice>(entity =>
             {
                 entity.HasKey(e => new { e.RbStavkeId, e.OtpremnicaId })
                .HasName("PK_StavkaOtpremnice");
-
-
             });
             modelBuilder.Entity<StavkaReklamacije>(entity =>
             {
                 entity.HasKey(e => new { e.RbStavkeId, e.ReklamacijaId })
                .HasName("PK_StavkaReklamacije");
-
-
             });
         }
 

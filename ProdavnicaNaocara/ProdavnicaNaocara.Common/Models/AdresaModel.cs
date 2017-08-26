@@ -8,10 +8,7 @@ namespace ProdavnicaNaocara.Common.Models
     {
         public int Id { get; set; }
         public int Broj { get; set; }
-
-
         public int UlicaId { get; set; }
-
         public string NazivUlice { get; set; }
 
 

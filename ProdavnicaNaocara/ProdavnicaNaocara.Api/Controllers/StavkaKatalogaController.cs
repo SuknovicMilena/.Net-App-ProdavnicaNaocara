@@ -23,7 +23,6 @@ namespace ProdavnicaNaocara.Api.Controllers
 
         }
 
-
         [HttpGet]
         public IActionResult GetAllByModel()
         {
@@ -31,6 +30,7 @@ namespace ProdavnicaNaocara.Api.Controllers
 
             return Ok(stavke);
         }
+
         [HttpPost]
         public IActionResult Add([FromBody]StavkaKatalogaModel model)
         {
@@ -51,6 +51,7 @@ namespace ProdavnicaNaocara.Api.Controllers
             stavkaKatalogaRepository.Save();
             return Ok();
         }
+
         [HttpPut("{RbStavke}/{KatalogId}")]
         public IActionResult Update(int RbStavke, int KatalogId, [FromBody]StavkaKatalogaModel model)
         {
@@ -63,9 +64,9 @@ namespace ProdavnicaNaocara.Api.Controllers
             stavkaIzBaze.ProizvodId = model.ProizvodId;
             stavkaIzBaze.Status = model.Status;
             stavkaKatalogaRepository.Save();
-
             return new NoContentResult();
         }
+
         [HttpDelete("{RbStavke}/{KatalogId}")]
         public IActionResult Delete(int RbStavke, int KatalogId)
         {
@@ -76,9 +77,7 @@ namespace ProdavnicaNaocara.Api.Controllers
             }
             stavkaKatalogaRepository.Delete(stavkaIzBaze);
             stavkaKatalogaRepository.Save();
-
             return new NoContentResult();
         }
-
     }
 }

@@ -10,13 +10,10 @@ namespace ProdavnicaNaocara.Data.Entities
     {
         public int Id { get; set; }
         public DateTime Datum { get; set; }
-
-
         public int? KatalogId { get; set; }
 
         [Required]
         public int KupacId { get; set; }
-
 
         [InverseProperty("ZahtevZaPonudom")]
         public Ponuda PonudaKupcu { get; set; }

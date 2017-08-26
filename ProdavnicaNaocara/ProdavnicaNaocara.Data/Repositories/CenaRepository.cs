@@ -23,10 +23,6 @@ namespace ProdavnicaNaocara.Data.Repositories
                 ProizvodIme = c.Proizvod.Ime,
                 IznosCene = c.IznosCene,
                 IznosPopusta = c.IznosPopusta
-
-
-
-
             }).ToList();
             return cene;
         }
@@ -39,8 +35,6 @@ namespace ProdavnicaNaocara.Data.Repositories
                 ProizvodIme = c.Proizvod.Ime,
                 IznosCene = c.IznosCene,
                 IznosPopusta = c.IznosPopusta
-
-
             }).FirstOrDefault(c => c.Id == id);
 
             return cena;

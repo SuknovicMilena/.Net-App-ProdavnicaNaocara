@@ -24,7 +24,6 @@ namespace ProdavnicaNaocara.Data.Repositories
                 StatusPonude = sp.StatusPonude,
                 ProizvodId = sp.ProizvodId,
                 ProizvodNaziv = sp.ProizvodPonuda.Ime
-
             }).ToList();
             return stavkePonude;
         }
@@ -39,7 +38,6 @@ namespace ProdavnicaNaocara.Data.Repositories
                 StatusPonude = sp.StatusPonude,
                 ProizvodId = sp.ProizvodId,
                 ProizvodNaziv = sp.ProizvodPonuda.Ime
-
             }).ToList();
             return stavkePonude;
         }
@@ -54,7 +52,6 @@ namespace ProdavnicaNaocara.Data.Repositories
                 StatusPonude = sp.StatusPonude,
                 ProizvodId = sp.ProizvodId,
                 ProizvodNaziv = sp.ProizvodPonuda.Ime
-
             }).FirstOrDefault(sp => sp.RbStavkeId == RbStavkeId);
             return stavkaPonude;
         }

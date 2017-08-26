@@ -24,7 +24,6 @@ namespace ProdavnicaNaocara.Data.Repositories
                 ProizvodjacId = p.ProizvodjacId,
                 ProizvodjacIme = p.Proizvodjac.Ime
             }).ToList();
-
             return proizvodi;
         }
 

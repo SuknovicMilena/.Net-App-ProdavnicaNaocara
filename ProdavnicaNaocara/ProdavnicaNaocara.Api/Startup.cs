@@ -39,7 +39,6 @@ namespace ProdavnicaNaocara.Api
                     .AllowCredentials());
             });
 
-
             services.AddDbContext<ProdavnicaNaocaraDbContext>(o => o.UseSqlServer(Configuration.GetConnectionString("prodavnicaDb")));
 
             services.AddScoped<ProizvodiRepository>();

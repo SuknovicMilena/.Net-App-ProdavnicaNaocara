@@ -8,7 +8,6 @@ namespace ProdavnicaNaocara.Data.Entities
     public class Mesto
     {
         public int Id { get; set; }
-
         public string Naziv { get; set; }
 
         [InverseProperty("Mesto")]

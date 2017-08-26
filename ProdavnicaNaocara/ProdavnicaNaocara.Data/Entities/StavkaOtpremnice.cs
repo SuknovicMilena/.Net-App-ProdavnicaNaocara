@@ -14,7 +14,6 @@ namespace ProdavnicaNaocara.Data.Entities
 
         public int Kolicina { get; set; }
 
-
         [Required]
         public int OtpremnicaId { get; set; }
 

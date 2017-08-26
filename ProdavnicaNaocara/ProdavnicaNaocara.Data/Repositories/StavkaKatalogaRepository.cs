@@ -22,13 +22,8 @@ namespace ProdavnicaNaocara.Data.Repositories
                 ProizvodId = sk.ProizvodId,
                 NazivProizvoda = sk.ProizvodStavke.Ime,
                 Status = sk.Status
-
-
             }).ToList();
             return stavke;
-
-
         }
-
     }
 }

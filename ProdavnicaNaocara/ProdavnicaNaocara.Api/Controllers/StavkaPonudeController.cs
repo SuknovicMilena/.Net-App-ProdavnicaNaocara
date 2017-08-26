@@ -20,7 +20,6 @@ namespace ProdavnicaNaocara.Api.Controllers
             this.stavkaPonudeRepositry = stavkaPonudeRepositry;
             this.proizvodiRepository = proizvodiRepository;
             this.ponudaRepository = ponudaRepository;
-
         }
 
         [HttpGet]
@@ -29,6 +28,7 @@ namespace ProdavnicaNaocara.Api.Controllers
             var stavke = stavkaPonudeRepositry.GetAllByStavkaPonudeModel();
             return Ok(stavke);
         }
+
         [HttpGet("{rb}")]
         public IActionResult GetById(int rb)
         {
@@ -57,14 +57,12 @@ namespace ProdavnicaNaocara.Api.Controllers
             if (proizvod == null)
             {
                 return NotFound("Ne postoji taj proizvod");
-
             }
             var ponuda = ponudaRepository.GetById(ponudaId);
 
             if (ponuda == null)
             {
                 return NotFound("Ne postoji ta ponuda");
-
             }
 
             var stavka = new StavkaPonude
@@ -75,10 +73,8 @@ namespace ProdavnicaNaocara.Api.Controllers
                 StatusPonude = model.StatusPonude
 
             };
-
             stavkaPonudeRepositry.Insert(stavka);
             stavkaPonudeRepositry.Save();
-
             return Ok();
 
         }
@@ -95,15 +91,11 @@ namespace ProdavnicaNaocara.Api.Controllers
             if (proizvod == null)
             {
                 return NotFound("Ne postoji taj proizvod");
-
             }
-
             stavka.StatusPonude = model.StatusPonude;
             stavka.ProizvodId = model.ProizvodId;
             stavka.Kolicnina = model.Kolicnina;
-
             stavkaPonudeRepositry.Save();
-
             return new NoContentResult();
 
         }
@@ -115,10 +107,8 @@ namespace ProdavnicaNaocara.Api.Controllers
             {
                 return NotFound("Stavka sa datim rednim brojem ne postoji");
             }
-
             stavkaPonudeRepositry.Delete(stavka);
             stavkaPonudeRepositry.Save();
-
             return new NoContentResult();
 
         }

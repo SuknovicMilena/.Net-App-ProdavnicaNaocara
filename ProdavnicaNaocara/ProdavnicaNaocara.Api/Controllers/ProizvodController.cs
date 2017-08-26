@@ -26,8 +26,6 @@ namespace ProdavnicaNaocara.Api.Controllers
             {
                 return NotFound($"Proizvod sa id-em {id} ne postoji.");
             }
-
-
             return Ok(proizvod);
         }
 
@@ -80,13 +78,10 @@ namespace ProdavnicaNaocara.Api.Controllers
             {
                 return NotFound($"Proizvodjac sa id-em {model.ProizvodjacId} ne postoji!");
             }
-
             proizvodIzBaze.Ime = model.Ime;
             proizvodIzBaze.ProizvodjacId = model.ProizvodjacId;
             proizvodIzBaze.Tip = model.Tip;
-
             proizvodiRepository.Save();
-
             return new NoContentResult();
         }
 
@@ -99,10 +94,8 @@ namespace ProdavnicaNaocara.Api.Controllers
             {
                 return NotFound($"Proizvod sa id-em {id} ne postoji.");
             }
-
             proizvodiRepository.Delete(proizvodIzBaze);
             proizvodiRepository.Save();
-
             return new NoContentResult();
         }
     }

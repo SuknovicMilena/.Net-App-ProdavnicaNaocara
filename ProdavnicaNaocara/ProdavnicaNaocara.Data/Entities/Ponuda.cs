@@ -11,7 +11,6 @@ namespace ProdavnicaNaocara.Data.Entities
     {
         public int Id { get; set; }
         public DateTime Datum { get; set; }
-
         public String Napomena { get; set; }
 
         [Required]

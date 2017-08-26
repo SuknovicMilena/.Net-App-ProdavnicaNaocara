@@ -20,7 +20,6 @@ namespace ProdavnicaNaocara.Data.Repositories
             {
                 Id = kat.Id,
                 Naziv = kat.Naziv
-
             }).ToList();
             return katalog;
         }

@@ -12,13 +12,11 @@ namespace ProdavnicaNaocara.Api.Controllers
     [Route("kupci")]
     public class KupacController : Controller
     {
-
         private KupacRepository kupacRepository;
         private AdresaRepository adresaRepository;
         private UlicaRepostitory ulicaRepostitory;
         private MestoRepository mestoRepository;
         private ZahtevZaPonudomRepository zahtevZaPonudomRepository;
-
 
         public KupacController(KupacRepository kupacRepository, AdresaRepository adresaRepository, UlicaRepostitory ulicaRepostitory, MestoRepository mestoRepository, ZahtevZaPonudomRepository zahtevZaPonudomRepository)
         {
@@ -28,30 +26,35 @@ namespace ProdavnicaNaocara.Api.Controllers
             this.ulicaRepostitory = ulicaRepostitory;
             this.zahtevZaPonudomRepository = zahtevZaPonudomRepository;
         }
+
         [HttpGet]
         public IActionResult GetAll()
         {
             var kupci = kupacRepository.GetAllKupacModel();
             return Ok(kupci);
         }
+
         [HttpGet("{Id}")]
         public IActionResult GetAll(int Id)
         {
             var kupci = kupacRepository.GetKupacModelById(Id);
             return Ok(kupci);
         }
+
         [HttpGet("zahtevi/{kupacId}")]
         public IActionResult GetZahteviZaKupca(int kupacId)
         {
             var zahtevi = zahtevZaPonudomRepository.GetAllZahteviZaKupca(kupacId);
             return Ok(zahtevi);
         }
+
         [HttpGet("zahtev/{id}")]
         public IActionResult GetZahtevById(int id)
         {
             var zahtev = zahtevZaPonudomRepository.GetAllZahtevById(id);
             return Ok(zahtev);
         }
+
         [HttpPost]
         public IActionResult Add([FromBody]KupacModel kupacModel)
         {
@@ -89,6 +92,7 @@ namespace ProdavnicaNaocara.Api.Controllers
             kupacRepository.Save();
             return new NoContentResult();
         }
+
         [HttpDelete("{Id}")]
         public IActionResult Delete(int Id)
         {

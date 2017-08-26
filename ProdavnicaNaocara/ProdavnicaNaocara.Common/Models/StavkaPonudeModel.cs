@@ -7,14 +7,11 @@ namespace ProdavnicaNaocara.Common.Models
 {
     public class StavkaPonudeModel
     {
-
         public int RbStavkeId { get; set; }
         public int PonudaId { get; set; }
         public int ProizvodId { get; set; }
         public string ProizvodNaziv { get; set; }
         public int Kolicnina { get; set; }
         public string StatusPonude { get; set; }
-
-
     }
 }

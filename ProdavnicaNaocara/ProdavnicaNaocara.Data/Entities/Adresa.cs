@@ -13,11 +13,9 @@ namespace ProdavnicaNaocara.Data.Entities
         [Required]
         public int UlicaId { get; set; }
 
-
         [ForeignKey("UlicaId")]
         [InverseProperty("Adrese")]
         public Ulica Ulica { get; set; }
-
 
         [InverseProperty("Adresa")]
         public List<Kupac> Kupci { get; set; }

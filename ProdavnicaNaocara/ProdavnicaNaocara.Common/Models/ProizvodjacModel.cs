@@ -8,9 +8,7 @@ namespace ProdavnicaNaocara.Common.Models
     public class ProizvodjacModel
     {
         public int Id { get; set; }
-
         public string Ime { get; set; }
-
         public string Adresa { get; set; }
     }
 }

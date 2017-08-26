@@ -19,6 +19,7 @@ namespace ProdavnicaNaocara.Api.Controllers
             this.katalogRepository = katalogRepository;
 
         }
+
         [HttpGet]
         public IActionResult GetAllKatalogModel()
         {
@@ -26,6 +27,7 @@ namespace ProdavnicaNaocara.Api.Controllers
             var katalozi = katalogRepository.GetAllKatalogModels();
             return Ok(katalozi);
         }
+
         [HttpPost]
         public IActionResult Add([FromBody] KatalogModel katModel)
         {
@@ -38,6 +40,7 @@ namespace ProdavnicaNaocara.Api.Controllers
             katalogRepository.Save();
             return Ok();
         }
+
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]KatalogModel model)
         {
@@ -50,6 +53,7 @@ namespace ProdavnicaNaocara.Api.Controllers
             katalogRepository.Save();
             return new NoContentResult();
         }
+
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

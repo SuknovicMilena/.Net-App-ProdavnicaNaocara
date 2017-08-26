@@ -19,9 +19,7 @@ namespace ProdavnicaNaocara.Data.Entities
         [Required]
         public int ProizvodId { get; set; }
 
-
         public int Kolicnina { get; set; }
-
         public string StatusPonude { get; set; }
 
         [ForeignKey("PonudaId")]

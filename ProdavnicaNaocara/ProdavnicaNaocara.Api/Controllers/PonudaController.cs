@@ -111,9 +111,7 @@ namespace ProdavnicaNaocara.Api.Controllers
 
                 ponuda.StavkePonude.Add(stavkaZaInsert);
             }
-
             ponudaRepository.Save();
-
             return NoContent();
         }
 
@@ -128,9 +126,7 @@ namespace ProdavnicaNaocara.Api.Controllers
 
             ponuda.Datum = model.Datum;
             ponuda.Napomena = model.Napomena;
-
             ponudaRepository.Save();
-
             return new NoContentResult();
         }
         [HttpDelete("{id}")]
@@ -141,10 +137,8 @@ namespace ProdavnicaNaocara.Api.Controllers
             {
                 return NotFound("Ta ponuda ne postoji");
             }
-
             ponudaRepository.Delete(ponuda);
             ponudaRepository.Save();
-
             return new NoContentResult();
         }
     }

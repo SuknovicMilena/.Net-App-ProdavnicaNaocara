@@ -31,7 +31,6 @@ namespace ProdavnicaNaocara.Api.Controllers
             return Ok(zahtevi);
         }
 
-
         [HttpPost]
         public IActionResult Add([FromBody]ZahtevZaPonudomModel zahtevModel)
         {
@@ -71,9 +70,7 @@ namespace ProdavnicaNaocara.Api.Controllers
             zahtev.Datum = zahtevModel.Datum;
             zahtev.KatalogId = zahtevModel.KatalogId;
             zahtev.KupacId = zahtevModel.KupacId;
-
             zahtevZaPonudomRepository.Save();
-
             return new NoContentResult();
 
         }
@@ -88,8 +85,6 @@ namespace ProdavnicaNaocara.Api.Controllers
             }
             zahtevZaPonudomRepository.Delete(zahtev);
             zahtevZaPonudomRepository.Save();
-
-
             return new NoContentResult();
 
         }

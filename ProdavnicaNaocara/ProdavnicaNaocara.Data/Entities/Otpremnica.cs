@@ -9,7 +9,6 @@ namespace ProdavnicaNaocara.Data.Entities
     public class Otpremnica
     {
         public int Id { get; set; }
-
         public DateTime DatumOtpreme { get; set; }
 
         [Required]

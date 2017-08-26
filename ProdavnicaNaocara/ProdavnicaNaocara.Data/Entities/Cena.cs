@@ -11,13 +11,11 @@ namespace ProdavnicaNaocara.Data.Entities
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-
         public double IznosCene { get; set; }
         public int IznosPopusta { get; set; }
 
         [Required]
         public int ProizvodId { get; set; }
-
 
         [ForeignKey("ProizvodId")]
         [InverseProperty("Cene")]

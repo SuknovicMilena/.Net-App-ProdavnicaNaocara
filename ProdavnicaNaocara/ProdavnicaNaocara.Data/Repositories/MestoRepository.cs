@@ -20,7 +20,6 @@ namespace ProdavnicaNaocara.Data.Repositories
         {
             var mesta = dbSet.Select(m => new MestoModel
             {
-
                 Id = m.Id,
                 Naziv = m.Naziv
             }).ToList();
@@ -30,7 +29,6 @@ namespace ProdavnicaNaocara.Data.Repositories
         {
             var mesto = dbSet.Select(m => new MestoModel
             {
-
                 Id = m.Id,
                 Naziv = m.Naziv
             }).FirstOrDefault(m => m.Id == Id);

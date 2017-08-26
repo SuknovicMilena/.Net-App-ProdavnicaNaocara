@@ -7,9 +7,6 @@ namespace ProdavnicaNaocara.Common.Models
     public class KatalogModel
     {
         public int Id { get; set; }
-
         public String Naziv { get; set; }
-
-
     }
 }

@@ -11,11 +11,9 @@ namespace ProdavnicaNaocara.Data.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int RbStavkeId { get; set; }
-
         public string Opis { get; set; }
 
         [Required]
-
         public int ReklamacijaId { get; set; }
 
         [Required]

@@ -3,16 +3,6 @@
   "version": "1.0.0",
   "description": "\"\"",
   "main": "yes",
-  "dependencies": {},
-  "devDependencies": {},
-  "scripts": {
-    "start": "webpack-dev-server --inline --progress --open --port 8001",
-    "build": "rimraf dist && webpack --config config/webpack.prod.js --progress --profile --bail",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Milena <milenasuknovic@hotmail.com>",
-  "license": "MIT",
-  "private": true,
   "dependencies": {
     "@angular/animations": "4.2.4",
     "@angular/common": "4.2.4",
@@ -60,5 +50,13 @@
     "webpack-dev-server": "2.5.0",
     "webpack-manifest-plugin": "1.1.0",
     "webpack-merge": "4.1.0"
-  }
+  },
+  "scripts": {
+    "start": "webpack-dev-server --inline --progress --open --port 8001",
+    "build": "rimraf dist && webpack --config config/webpack.prod.js --progress --profile --bail",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Milena <milenasuknovic@hotmail.com>",
+  "license": "MIT",
+  "private": true
 }

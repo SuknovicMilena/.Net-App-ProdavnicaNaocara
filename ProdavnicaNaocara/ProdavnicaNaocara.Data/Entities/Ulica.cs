@@ -9,7 +9,6 @@ namespace ProdavnicaNaocara.Data.Entities
     public class Ulica
     {
         public int Id { get; set; }
-
         public string Naziv { get; set; }
 
         [Required]

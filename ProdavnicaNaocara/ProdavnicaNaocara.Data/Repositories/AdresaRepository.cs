@@ -16,7 +16,6 @@ namespace ProdavnicaNaocara.Data.Repositories
 
         public List<AdresaModel> getAllAdresaModel()
         {
-
             var adrese = dbSet.Select(a => new AdresaModel
             {
                 Id = a.Id,

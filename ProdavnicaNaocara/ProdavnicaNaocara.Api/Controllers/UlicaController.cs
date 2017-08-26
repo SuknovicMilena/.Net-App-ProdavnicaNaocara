@@ -21,13 +21,14 @@ namespace ProdavnicaNaocara.Api.Controllers
             this.UlicaRepostitory = UlicaRepostitory;
 
         }
+
         [HttpGet]
         public IActionResult GetAllUlice()
         {
             var ulice = UlicaRepostitory.GetAllUlica();
             return Ok(ulice);
-
         }
+
         [HttpGet("ulicePoMestima/{mestoId}")]
         public IActionResult GetAllUlicePoMestima(int mestoId)
         {
@@ -35,6 +36,7 @@ namespace ProdavnicaNaocara.Api.Controllers
             return Ok(ulice);
 
         }
+
         [HttpGet("{Id}")]
         public IActionResult GetAllUliceById(int Id)
         {
@@ -42,6 +44,7 @@ namespace ProdavnicaNaocara.Api.Controllers
             return Ok(ulica);
 
         }
+
         [HttpPost]
         public IActionResult Add([FromBody]UlicaModel model)
         {
@@ -55,11 +58,11 @@ namespace ProdavnicaNaocara.Api.Controllers
                 Naziv = model.Naziv,
                 MestoId = model.MestoId
             };
-
             UlicaRepostitory.Insert(ulica);
             UlicaRepostitory.Save();
             return Ok();
         }
+
         [HttpPost("{Id}")]
         public IActionResult Update(int Id, [FromBody]UlicaModel model)
         {
@@ -76,11 +79,11 @@ namespace ProdavnicaNaocara.Api.Controllers
             }
             ulica.Naziv = model.Naziv;
             ulica.MestoId = model.MestoId;
-
             UlicaRepostitory.Save();
             return new NoContentResult();
 
         }
+
         [HttpDelete("{Id}")]
         public IActionResult Delete(int Id)
         {
@@ -89,7 +92,6 @@ namespace ProdavnicaNaocara.Api.Controllers
             {
                 return NotFound("Izabrana ulica ne postoji!");
             }
-
             UlicaRepostitory.Delete(ulica);
             UlicaRepostitory.Save();
             return new NoContentResult();

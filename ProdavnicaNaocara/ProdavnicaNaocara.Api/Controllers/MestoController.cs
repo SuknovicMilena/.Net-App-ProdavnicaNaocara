@@ -19,12 +19,14 @@ namespace ProdavnicaNaocara.Api.Controllers
             this.MestoRepository = MestoRepository;
 
         }
+
         [HttpGet]
         public IActionResult GetAll()
         {
             var mesta = MestoRepository.GetAllMesta();
             return Ok(mesta);
         }
+
         [HttpPost]
         public IActionResult Add([FromBody]MestoModel model)
         {
@@ -37,6 +39,7 @@ namespace ProdavnicaNaocara.Api.Controllers
             return Ok();
 
         }
+
         [HttpPut("{Id}")]
         public IActionResult Update(int Id, [FromBody]MestoModel model)
         {
@@ -50,6 +53,7 @@ namespace ProdavnicaNaocara.Api.Controllers
             return new NoContentResult();
 
         }
+
         [HttpDelete("{Id}")]
         public IActionResult Delete(int Id)
         {

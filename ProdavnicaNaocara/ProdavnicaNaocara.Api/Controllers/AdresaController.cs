@@ -14,17 +14,20 @@ namespace ProdavnicaNaocara.Api.Controllers
     {
         private UlicaRepostitory ulicaRepository;
         private AdresaRepository adresaRepository;
+
         public AdresaController(UlicaRepostitory ulicaRepository, AdresaRepository adresaRepository)
         {
             this.ulicaRepository = ulicaRepository;
             this.adresaRepository = adresaRepository;
         }
+
         [HttpGet]
         public IActionResult GetAll()
         {
             var adrese = adresaRepository.getAllAdresaModel();
             return Ok(adrese);
         }
+
         [HttpPost]
         public IActionResult Add([FromBody]AdresaModel model)
         {

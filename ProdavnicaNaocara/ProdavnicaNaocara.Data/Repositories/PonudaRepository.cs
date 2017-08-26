@@ -24,8 +24,6 @@ namespace ProdavnicaNaocara.Data.Repositories
                 Napomena = p.Napomena,
                 ZahtevId = p.ZahtevZaPonudom.Id,
                 ZahtevNaziv = p.ZahtevZaPonudom.Katalog.Naziv
-
-
             }).ToList();
 
             return ponude;
@@ -40,7 +38,6 @@ namespace ProdavnicaNaocara.Data.Repositories
                 Napomena = p.Napomena,
                 ZahtevId = p.ZahtevZaPonudom.Id,
                 ZahtevNaziv = p.ZahtevZaPonudom.Katalog.Naziv
-
             }).FirstOrDefault(p => p.Id == Id);
             return ponuda;
 

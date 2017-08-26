@@ -9,15 +9,11 @@ namespace ProdavnicaNaocara.Common.Models
     public class ProizvodModel
     {
         public int Id { get; set; }
-
         public string Ime { get; set; }
-
         public TipProizvoda Tip { get; set; }
-
         public int ProizvodjacId { get; set; }
-
         public string ProizvodjacIme { get; set; }
 
-        
+
     }
 }

@@ -24,10 +24,6 @@ namespace ProdavnicaNaocara.Data.Repositories
                 BrojTelefona = k.BrojTelefona,
                 AdresaId = k.AdresaId,
                 AdresaNaziv = k.Adresa.Ulica.Naziv + " " + k.Adresa.Broj,
-
-
-
-
             }).ToList();
             return kupci;
         }
@@ -41,9 +37,6 @@ namespace ProdavnicaNaocara.Data.Repositories
                 BrojTelefona = k.BrojTelefona,
                 AdresaId = k.AdresaId,
                 AdresaNaziv = k.Adresa.Ulica.Naziv + "" + k.Adresa.Broj
-
-
-
             }).FirstOrDefault(k => k.Id == id);
             return kupac;
         }

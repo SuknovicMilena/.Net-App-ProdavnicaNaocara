@@ -21,7 +21,6 @@ namespace ProdavnicaNaocara.Data.Repositories
                 Id = p.Id,
                 Ime = p.Ime,
             }).ToList();
-
             return proizvodjaci;
         }
 

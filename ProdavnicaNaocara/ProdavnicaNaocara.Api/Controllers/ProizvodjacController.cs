@@ -27,7 +27,6 @@ namespace ProdavnicaNaocara.Api.Controllers
         {
             var proizvodjaci = proizvodjaciRepository.GetAllProizvodjacModels();
             return Ok(proizvodjaci);
-
         }
 
         [HttpGet]
@@ -64,7 +63,6 @@ namespace ProdavnicaNaocara.Api.Controllers
                 return NotFound($"Proizvodjac sa id-jem{proizvodjacIzBaze.Id} ne postoji u bazi");
             }
             proizvodjacIzBaze.Ime = model.Ime;
-  
             proizvodjaciRepository.Save();
             return new NoContentResult();
         }
